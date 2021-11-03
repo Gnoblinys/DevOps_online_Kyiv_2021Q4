@@ -1,0 +1,18 @@
+deb4b67 (HEAD -> master, origin/master, origin/develop, develop) HEAD@{0}: merge develop: Fast-forward
+e5df85f HEAD@{1}: checkout: moving from develop to master
+deb4b67 (HEAD -> master, origin/master, origin/develop, develop) HEAD@{2}: commit: merge ok
+799cb79 HEAD@{3}: commit (merge): fix index with style class
+ab1cc05 HEAD@{4}: checkout: moving from styles to develop
+394ec6c (origin/styles, styles) HEAD@{5}: checkout: moving from develop to styles
+ab1cc05 HEAD@{6}: commit (merge): fix update index
+a594131 HEAD@{7}: commit: before merge image to develop
+edaccb4 HEAD@{8}: checkout: moving from images to develop
+24fdf54 (origin/images, images) HEAD@{9}: checkout: moving from develop to images
+edaccb4 HEAD@{10}: checkout: moving from styles to develop
+394ec6c (origin/styles, styles) HEAD@{11}: commit: chenge index and style
+efcc7e9 HEAD@{12}: checkout: moving from develop to styles
+edaccb4 HEAD@{13}: checkout: moving from images to develop
+24fdf54 (origin/images, images) HEAD@{14}: checkout: moving from develop to images
+edaccb4 HEAD@{15}: commit: clean index after errore
+f81961d HEAD@{16}: checkout: moving from images to develop
+24fdf54 (origin/images, images) HEAD@{17}: checkout: moving from develop to images
