@@ -1,0 +1,37 @@
+Init
+$ git init
+$ git init<folder>
+
+
+Clone
+$ git clone<remote repository url> <FolderName> // клонирует репо но переименует папку
+
+Git configuration and help
+$ git config _name "_value" –set property
+$ git config –-global –for current user
+$ git config –-system –for all users
+$ git config --global user.name "IvanIvanov"
+$ git config--list –get config for current repo
+git config --global core.editor "code --wait"
+$ gitconfig--global core.editor"'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst-notabbar-nosession-noPlugin"
+
+
+
+.gitignore
+# no .a files*.a
+# but do track lib.a, even though you're ignoring .a files above!lib.a
+# ignore all files in the build/ directorybuild/
+# ignore all .pdf files in the doc/ directorydoc/**/*.pdf
+
+git config
+&git config --global user.name
+
+$ git config --global alias.co checkout
+$ git config --global alias.br branch
+$ git config --global alias.ci commit
+$ git config --global alias.st status
+
+HELP
+$ githelp<verb>
+$ git<verb> --help
+$ mangit-<verb>

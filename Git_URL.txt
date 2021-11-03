@@ -1,0 +1,25 @@
+Main site
+•https://git-scm.com/
+
+Git Simuliator
+•https://learngitbranching.js.org/
+
+Abour GitHub
+•https://guides.github.com/activities/hello-world/
+
+Git Docu Rus
+•https://git-scm.com/book/ru/v2
+
+Git ignore
+•https://github.com/github/gitignore
+
+Markdown: Syntax
+•https://daringfireball.net/projects/markdown/syntax
+•https://guides.github.com/features/mastering-markdown/
+•https://help.github.com/en/articles/basic-writing-and-formatting-syntax
+•https://www.markdownguide.org/getting-started
+
+•https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks22
+
+Analog Pytty
+https://mobaxterm.mobatek.net
