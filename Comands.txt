@@ -2,6 +2,29 @@ Init
 $ git init
 $ git init<folder>
 
+& git init . //check all files
+
+REMOTE / PUSH / PULL
+$ git remote add origin <URK.git> //Команда git remote add origin <URL.git> создает
+новый пульт дистанционного управления с именем origin ,
+расположенный по адресу <URL.git>.
+Как только вы сделаете это, в ваших командах push вы можете нажать
+на origin вместо того, чтобы вводить весь <URL.git>.
+
+$ git push -u origin main // upload from Main(<local data>) to origin(<URL.git>)
+-u -upstream // set for future connect betwen local and remote branch
+
+branch
+$ git branch //list branches
+- M <OldNameBranch> <NewNameBranch> //Rename branch
+$ git branch branch-name​ //create new branch
+$ git branch -D <NameBranch> //delete <NameBranch>
+
+checkout
+git checkout <SomeBranch> // move to <SomeBranch>
+git checkout -b <NameBranch> // create <NameBranch> and move to it
+
+
 
 Clone
 $ git clone<remote repository url> <FolderName> // клонирует репо но переименует папку
