@@ -1,4 +1,4 @@
-Init
+git Init
 $ git init
 $ git init<folder>
 
