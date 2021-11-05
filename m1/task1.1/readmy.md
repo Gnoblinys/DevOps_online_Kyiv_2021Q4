@@ -27,7 +27,7 @@ Did task, created\changed  files and folder, created branches.
 
 I controled braches trogh module GitLeans
 
-(https://github.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/blob/master/m1/task1.1/images/GitLeans.png?raw=true)
+![](https://github.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/blob/master/m1/task1.1/images/GitLeans.png?raw=true)
 
 
 
