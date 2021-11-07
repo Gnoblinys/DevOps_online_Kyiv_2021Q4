@@ -1,0 +1,38 @@
+>-vagrant init generic/ubuntu2004 - init box vith VM
+
+>-vagrant up - start  box
+
+>-vagrant halt - stop box
+
+>-vagrant box remove "generic/ubuntu2004" - delete box
+
+
+
+ # **Create Vagrant BOX**
+
+To configure SSH access with the insecure keypair, place the public key into the:
+
+**~/.ssh/authorized_keys file for the "vagrant" user.**
+
+ Note that OpenSSH is very picky about file permissions. Therefore, make sure that
+ **~/.ssh has 0700 permissions and the authorized keys file has 0600 permissions**
+
+**Password-less Sudo**
+
+This is important!. Many aspects of Vagrant expect the default SSH user to have passwordless sudo configured. This lets Vagrant configure networks, mount synced folders, install software, and more.
+
+To begin, some minimal installations of operating systems do not even include sudo by default. Verify that you install sudo in some way.
+
+After installing sudo, configure it (usually using visudo) to allow passwordless sudo for the "vagrant" user. This can be done with the following line at the end of the configuration file:
+
+>-vagrant ALL=(ALL) NOPASSWD: ALL
+
+**SSH Tweaks**
+In order to keep SSH speedy even when your machine or the Vagrant machine is not connected to the internet, set the UseDNS configuration to **no** in the **SSH server configuration.**
+
+This avoids a reverse DNS lookup on the connecting SSH client which can take many seconds.
+
+
+
+
+
