@@ -13,7 +13,7 @@ I moved to learnd Vagrant.
 
 Added publick network (DHCP) and share folders
 
-![network_share](https://raw.githubusercontent.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/master/m1/task2.1/images/network_share.png?token=ANZ2WOCHQXZBE64HDUWSFMTBRE7TG)
+![network_share](https://github.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/blob/master/m1/task2.1/images/network_share.png)
 
 ![test share](https://raw.githubusercontent.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/master/m1/task2.1/images/test%20share.png?token=ANZ2WODIMRSNA57AMKEGOYTBRE7WG)
 
