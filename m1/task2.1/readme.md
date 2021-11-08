@@ -15,7 +15,7 @@ Added publick network (DHCP) and share folders
 
 ![network_share](https://github.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/blob/master/m1/task2.1/images/network_share.png)
 
-![test share](https://github.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/master/m1/task2.1/images/test%20share.png)
+![test share](https://github.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/master/m1/task2.1/images/test_share.png)
 
 - Setup and start VM1 and 2
 
