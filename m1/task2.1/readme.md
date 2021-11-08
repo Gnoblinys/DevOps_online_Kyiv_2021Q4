@@ -15,13 +15,13 @@ Added publick network (DHCP) and share folders
 
 ![network_share](https://github.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/blob/master/m1/task2.1/images/network_share.png)
 
-![test share](https://raw.githubusercontent.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/master/m1/task2.1/images/test%20share.png?token=ANZ2WODIMRSNA57AMKEGOYTBRE7WG)
+![test share](https://raw.githubusercontent.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/master/m1/task2.1/images/test%20share.png)
 
 - Setup and start VM1 and 2
 
 >vagrant up - start  box
 
-![VMashines](https://raw.githubusercontent.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/master/m1/task2.1/images/HV_VM1_VM2.png?token=ANZ2WOEYHOH4YFTZJMTK67TBRE7X2)
+![VMashines](https://raw.githubusercontent.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/master/m1/task2.1/images/HV_VM1_VM2.png)
 
 - Changed vagrantdfile and reload VM for update setup
 
