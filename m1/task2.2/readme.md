@@ -30,6 +30,22 @@ I tok shapshot for disk_D, and created new disk_D from this snapshot in target A
 
 ![AWS](mount.png)
 
+**Lightsail. Created WP Site**
+
+![AWS](WP_site.png)
+
+**Created backet**
+
+![AWS](S3_backet.png)
+
+
+**S3 work trough CLI**
+
+![AWS](s3_cli.png)
+
+
+**Created domenNAME**
+>fluggegecheimen.click
 
 
 
