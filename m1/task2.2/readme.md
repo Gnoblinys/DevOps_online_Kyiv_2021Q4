@@ -48,6 +48,24 @@ I tok shapshot for disk_D, and created new disk_D from this snapshot in target A
 >fluggegecheimen.click
 
 
+**Instaled and configurate Docker in EC2**
+
+![AWS](Docker_EC2.png)
+
+**Pushed image to Amazon ECR (Elastic Container Registry)**
+
+![AWS](PushRepo.png)
+
+![AWS](PushRepo2.png)
+
+
+
+
+
+
+
+
+
 
 
 
