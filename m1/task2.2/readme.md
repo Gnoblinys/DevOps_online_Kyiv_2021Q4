@@ -59,6 +59,29 @@ I tok shapshot for disk_D, and created new disk_D from this snapshot in target A
 ![AWS](PushRepo2.png)
 
 
+**Created Cluster ans added Task Definition some types images: DockerHUB and ECR**
+
+![AWS](Cluster.png)
+
+![AWS](ClusterTasks.png)
+
+![AWS](fromDockerHUB.png)
+
+![AWS](fromECR.png)
+
+![AWS](instanceActyvyty.png)
+
+
+[fluggegecheimen.click](fluggegecheimen.click)
+
+
+
+
+
+
+
+
+
 
 
 
