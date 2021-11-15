@@ -15,7 +15,7 @@ Added publick network (DHCP) and share folders
 
 ![network_share](images/network_share.png)
 
-![test share](images/test_share.png)
+![test share](images/Test_share.png)
 
 - Setup and start VM1 and 2
 
