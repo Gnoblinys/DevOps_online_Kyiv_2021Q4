@@ -72,7 +72,7 @@ I tok shapshot for disk_D, and created new disk_D from this snapshot in target A
 ![AWS](images/instanceActyvyty.png)
 
 
-[fluggegecheimen.click](fluggegecheimen.click)
+[fluggegecheimen.click](www.fluggegecheimen.click)
 
 
 
