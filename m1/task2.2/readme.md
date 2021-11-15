@@ -2,7 +2,7 @@
 
 **Amazon Lightsail. Create VM in the AWS cloud and connect to it.** 
 
-![AWS](ex4.png)
+![AWS](DevOps_online_Kyiv_2021Q4/m1/task2.2/images/ex4.png)
 
 ![AWS](ex4.2.png)
 
