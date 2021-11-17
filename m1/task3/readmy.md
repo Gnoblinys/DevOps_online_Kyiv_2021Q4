@@ -20,15 +20,24 @@ Separated Data Center hosts betwen VLAN - will have same result - router dosn't 
 
 After added connection on Router3 betwen VLANs 2-3-4 i got good ping
 
-Router(config-if)# interface GigabitEthernet0/0.2
-Router(config-subif)#encapsulation dot1Q 2
-Router(config-subif)#ip address 10.3.0.1 255.255.255.192
-Router(config-if)# interface GigabitEthernet0/0.3
-Router(config-subif)#encapsulation dot1Q 3
-Router(config-subif)#ip address 10.3.0.65 255.255.255.192
-Router(config-if)# interface GigabitEthernet0/0.4
-Router(config-subif)#encapsulation dot1Q 4
-Router(config-subif)#ip address 10.3.0.129 255.255.255.192
+>Router(config-if)# interface GigabitEthernet0/0.2
+
+>Router(config-subif)#encapsulation dot1Q 2
+
+>Router(config-subif)#ip address 10.3.0.1 255.255.255.192
+
+>Router(config-if)# interface GigabitEthernet0/0.3
+
+>Router(config-subif)#encapsulation dot1Q 3
+
+>Router(config-subif)#ip address 10.3.0.65 255.255.255.192
+
+>Router(config-if)# interface GigabitEthernet0/0.4
+
+>Router(config-subif)#encapsulation dot1Q 4
+
+>Router(config-subif)#ip address 10.3.0.129 255.255.255.192
+
 
 ![6.pingAfterVlanRouting](images/6.pingAfterVlanRouting.jpg)
 
