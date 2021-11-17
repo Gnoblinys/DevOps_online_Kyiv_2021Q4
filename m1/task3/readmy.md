@@ -1,7 +1,9 @@
 ### Task 3.1 ###
+[Cisco Packet Tracer File](/Task3.1.pkt)
 
 
 ### Task 3.2 ###
+[Cisco Packet Tracer File](/Task3.2.pkt)
 
 **Create internet nertwork**
 
