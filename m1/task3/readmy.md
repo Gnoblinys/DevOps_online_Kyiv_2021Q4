@@ -1,8 +1,20 @@
-### Task 3.1 ###
+# **Task 3.1** #
 [Cisco Packet Tracer File](/Task3.1.pkt)
 
+Created networks zones.
 
-### Task 3.2 ###
+![1.enterprize_ping](images/1.enterprize_ping.jpg)
+
+![2.datacentr_ping](images/2.datacentr_ping.jpg)
+
+![3.home_ping](images/3.home_ping.jpg)
+
+Packed analized with Wireshart
+
+![4.wireshark](images/4.wireshark.jpg)
+
+
+# **Task 3.2** #
 [Cisco Packet Tracer File](/Task3.2.pkt)
 
 **Create internet nertwork**
@@ -40,6 +52,31 @@ After added connection on Router3 betwen VLANs 2-3-4 i got good ping
 
 
 ![6.pingAfterVlanRouting](images/6.pingAfterVlanRouting.jpg)
+
+
+# **Task 3.3** #
+
+Added statick routes for VLANs
+
+![7.StaticRoutesForVLANs](images/7.StaticRoutesForVLANs.jpg)
+
+Ping from PC1 to WEB 2
+![8.PingPC1toWEB2](images/8.PingPC1toWEB2.jpg)
+
+Turn on RIP auto routing (RIP 1 didn't work, I configurated RIP2)
+
+**CLI**
+>router rip
+
+>verison 2
+
+>network
+
+![9.RIProutingPing](images/9.RIProutingPing.jpg)
+
+
+
+
 
 
 
