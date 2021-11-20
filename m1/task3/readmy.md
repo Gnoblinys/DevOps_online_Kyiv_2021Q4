@@ -24,8 +24,11 @@ Packed analized with Wireshart
 **Tested Data Centr network with mak 255.255.255.192**
 
 Hosts 10.3.0.50 - .100 - .150 didn't ping wich other becouse hosts ip adress belong different networks and does't have any routes.
+
 10.3.0.50 with mask 255.255.255.192 has adress range: from 10.3.0.0 to 10.3.0.63
+
 10.3.0.100 with mask 255.255.255.192 has adress range: from 10.3.0.64 to 10.3.0.127
+
 10.3.0.150 with mask 255.255.255.192 has adress range: from 10.3.0.128 64 to 10.3.0.191
 
 Separated Data Center hosts betwen VLAN - will have same result - router dosn't have routes.
@@ -73,6 +76,26 @@ Turn on RIP auto routing (RIP 1 didn't work, I configurated RIP2)
 >network
 
 ![9.RIProutingPing](images/9.RIProutingPing.jpg)
+
+DHCP Server enabled, check PC1-2
+
+![10.DHCP_ON](images/10.DHCP_ON.jpg)
+
+PC3-Home WiFi Router
+
+![11.WIFI_DHCP_ON](images/11.WIFI_DHCP_ON.jpg)
+
+DNS Server setup
+
+![12.DNSServerSerup](images/12.DNSServerSerup.jpg)
+
+![13.PC1_DNS_Ok](images/13.PC1_DNS_Ok.jpg)
+
+![14.PC2_DNS_Ok](images/14.PC2_DNS_Ok.jpg)
+
+
+
+
 
 
 
