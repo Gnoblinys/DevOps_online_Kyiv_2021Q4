@@ -77,6 +77,9 @@ Turn on RIP auto routing (RIP 1 didn't work, I configurated RIP2)
 
 ![9.RIProutingPing](images/9.RIProutingPing.jpg)
 
+
+# **Task 3.4** #
+
 DHCP Server enabled, check PC1-2
 
 ![10.DHCP_ON](images/10.DHCP_ON.jpg)
