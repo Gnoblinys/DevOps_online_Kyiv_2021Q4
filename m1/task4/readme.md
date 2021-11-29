@@ -96,16 +96,31 @@ VALUES
 ```
 aws s3 cp /home/ubuntu/DevOnline.sql s3://dbdevonlinebackup/
 upload: ./DevOnline.sql to s3://dbdevonlinebackup/DevOnline.sql
+//Restore from S3 doesn't work for t2.micro servers...
 ```
 
+ sudo mysql -h devonline.cyr5wdrsdhcd.us-east-2.rds.amazonaws.com devonline -u root -p < /home/ubuntu/DevOnline.sql
 
+ ![8.restoredb_to_rds](images/8.restoredb_to_rds.jpg)
 
+ ![9.select_rds](images/9.select_rds.jpg)
 
+ **Created dump and upload to s3**
 
+```
+ sudo mysqldump -h devonline.cyr5wdrsdhcd.us-east-2.rds.amazonaws.com devonline -u root -p > /home/ubuntu/DevOnline_rds.sql
 
+ aws s3 cp /home/ubuntu/DevOnline_rds.sql s3://dbdevonlinebackup/
+```
+![10.upload_dumpS3](images/10.upload_dumpS3.jpg)
 
+- Or snapshot
 
+![11.snapshot](images/11.snapshot.jpg)
 
+## DynamoDB ##
+
+![12.ddb](images/12.ddb.jpg)
 
 
 
