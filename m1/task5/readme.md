@@ -148,4 +148,194 @@ DESCRIPTION
 
 ```
 
+- 6
+"Less" and "more" are comands for comfortable read big text files. "Less" is more new and more comfortable comand.
+
+```
+ubuntu@ip-172-31-20-252:/$ find /home .bash -print
+/home
+/home/ubuntu
+/home/ubuntu/.Xauthority
+/home/ubuntu/.bashrc
+/home/ubuntu/DevOnline_rds.sql
+/home/ubuntu/.cache
+/home/ubuntu/.cache/motd.legal-displayed
+/home/ubuntu/.bash_history
+/home/ubuntu/.sudo_as_admin_successful
+/home/ubuntu/.ssh
+/home/ubuntu/.ssh/authorized_keys
+/home/ubuntu/.aws
+/home/ubuntu/.aws/credentials
+/home/ubuntu/.aws/config
+/home/ubuntu/.bash_logout
+/home/ubuntu/.profile
+/home/ubuntu/DevOnline.sql
+find: ‘.bash’: No such file or directory
+ubuntu@ip-172-31-20-252:/$ more /home/ubuntu/DevOnline.sql
+-- MySQL dump 10.13  Distrib 8.0.27, for Linux (x86_64)
+--
+-- Host: localhost    Database: DevOnline
+-- ------------------------------------------------------
+-- Server version       8.0.27-0ubuntu0.20.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `lessons`
+--
+
+```
+
+"Less" shows file in separate "window" and you can move file as down as up.
+
+- 8
+
+> ls -1 -a -F -R /home
+
+      -1     list one file per line. 
+      -a     view all files in all dir.
+      -F     append indicator
+      -R     list subdirectories recursively
+
+```
+ubuntu@ip-172-31-20-252:/$ ls -1 -a -F -R /home
+/home:
+./
+../
+ubuntu/
+
+/home/ubuntu:
+./
+../
+.Xauthority
+.aws/
+.bash_history
+.bash_logout
+.bashrc
+.cache/
+.profile
+.ssh/
+.sudo_as_admin_successful
+DevOnline.sql
+DevOnline_rds.sql
+
+/home/ubuntu/.aws:
+./
+../
+config
+credentials
+
+/home/ubuntu/.cache:
+./
+../
+motd.legal-displayed
+
+/home/ubuntu/.ssh:
+./
+../
+authorized_keys
+```
+
+- without "-a"
+```
+ubuntu@ip-172-31-20-252:/$ ls -1 -F -R /home
+/home:
+ubuntu/
+
+/home/ubuntu:
+DevOnline.sql
+DevOnline_rds.sql
+```
+##  Part 2 ##
+
+- 1
+
+>-f        Prints the full path prefix for each file.
+
+>-P        List  only  those files that match the wild-card pattern.
+
+>--prune   Exclude dir without finded diles.
+
+>-L        Max display depth of the directory tree.
+
+
+```
+ubuntu@ip-172-31-20-252:/$ tree -f -P '*log*' --prune -L 3 /var
+/var
+├── /var/lib
+│   ├── /var/lib/sgml-base
+│   │   ├── /var/lib/sgml-base/supercatalog
+│   │   └── /var/lib/sgml-base/supercatalog.old
+│   └── /var/lib/xml-core
+│       └── /var/lib/xml-core/catalog
+└── /var/log
+    ├── /var/log/alternatives.log
+    ├── /var/log/alternatives.log.1
+    ├── /var/log/apt
+    │   ├── /var/log/apt/eipp.log.xz
+    │   ├── /var/log/apt/history.log
+    │   ├── /var/log/apt/history.log.1.gz
+    │   ├── /var/log/apt/term.log
+    │   └── /var/log/apt/term.log.1.gz
+    ├── /var/log/auth.log
+    ├── /var/log/cloud-init-output.log
+    ├── /var/log/cloud-init.log
+    ├── /var/log/dpkg.log
+    ├── /var/log/dpkg.log.1
+    ├── /var/log/fontconfig.log
+    ├── /var/log/kern.log
+    ├── /var/log/landscape
+    │   └── /var/log/landscape/sysinfo.log
+    ├── /var/log/lastlog
+    ├── /var/log/mysql
+    │   ├── /var/log/mysql/error.log
+    │   ├── /var/log/mysql/error.log.1.gz
+    │   ├── /var/log/mysql/error.log.2.gz
+    │   └── /var/log/mysql/error.log.3.gz
+    ├── /var/log/syslog
+    ├── /var/log/syslog.1
+    ├── /var/log/syslog.2.gz
+    ├── /var/log/syslog.3.gz
+    ├── /var/log/ubuntu-advantage.log
+    ├── /var/log/ubuntu-advantage.log.1
+    └── /var/log/unattended-upgrades
+        ├── /var/log/unattended-upgrades/unattended-upgrades-dpkg.log
+        ├── /var/log/unattended-upgrades/unattended-upgrades-dpkg.log.1.gz
+        ├── /var/log/unattended-upgrades/unattended-upgrades-shutdown.log
+        ├── /var/log/unattended-upgrades/unattended-upgrades-shutdown.log.1.gz
+        ├── /var/log/unattended-upgrades/unattended-upgrades.log
+        └── /var/log/unattended-upgrades/unattended-upgrades.log.1.gz
+
+8 directories, 35 files
+```
+- 2
+
+"file" — determine file type
+
+
+```
+ubuntu@ip-172-31-20-252:/boot$ file System.map-5.11.0-1020-aws
+System.map-5.11.0-1020-aws: regular file, no read permission
+ubuntu@ip-172-31-20-252:/boot$ file initrd.img
+initrd.img: symbolic link to initrd.img-5.11.0-1021-aws
+
+```
+- 3
+
+You can use cd /home from any dir, for move to home dir.
+
+- 4
+
+It was in part1 ex8.
+
+- 5
 
