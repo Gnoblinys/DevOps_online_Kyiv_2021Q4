@@ -339,3 +339,128 @@ It was in part1 ex8.
 
 - 5
 
+create a subdirectory in the home directory;
+```
+ubuntu@ip-172-31-20-252:/home$ mkdir ubuntu/timedir
+ubuntu@ip-172-31-20-252:~$ ls
+DevOnline.sql  DevOnline_rds.sql  timedir
+```
+in this subdirectory create a file containing information about directories
+located in the root directory
+
+ view the created file;
+
+
+```
+ubuntu@ip-172-31-20-252:/$ tree -d >  /home/ubuntu/timedir/DirTree
+ubuntu@ip-172-31-20-252:/$ less /home/ubuntu/timedir/DirTree
+
+.
+├── bin -> usr/bin
+├── boot
+│   └── grub
+│       ├── fonts
+│       └── i386-pc
+├── dev
+│   ├── block
+│   ├── char
+│   ├── cpu
+│   │   └── 0
+│   ├── disk
+│   │   ├── by-label
+│   │   ├── by-partuuid
+│   │   └── by-uuid
+│   ├── dma_heap
+│   ├── fd -> /proc/self/fd
+│   ├── hugepages
+│   ├── input
+│   │   └── by-path
+│   ├── lightnvm
+│   ├── mapper
+│   ├── mqueue
+│   ├── net
+│   ├── pts
+│   ├── shm
+│   │   └── eic-hostkey-WxIe8M8S [error opening dir]
+│   ├── vfio
+│   └── xen
+├── etc
+│   ├── ImageMagick-6
+│   ├── NetworkManager
+│   │   └── dispatcher.d
+│   ├── PackageKit
+
+...
+```
+
+copy the created file to your home directory using relative and absolute
+addressing.
+```
+ubuntu@ip-172-31-20-252:/$ cp /home/ubuntu/timedir/DirTree /home/ubuntu/
+ubuntu@ip-172-31-20-252:/$ cp ~/timedir/DirTree ~/DirTreeRel
+ubuntu@ip-172-31-20-252:/$ tree ~/
+/home/ubuntu/
+├── DevOnline.sql
+├── DevOnline_rds.sql
+├── DirTree
+├── DirTreeRel
+└── timedir
+    └── DirTree
+```
+
+delete the previously created subdirectory with the file requesting removal;
+```
+ubuntu@ip-172-31-20-252:/$ rm -R ~/timedir
+ubuntu@ip-172-31-20-252:/$ tree ~/
+/home/ubuntu/
+├── DevOnline.sql
+├── DevOnline_rds.sql
+├── DirTree
+└── DirTreeRel
+```
+delete the file copied to the home directory.
+```
+ubuntu@ip-172-31-20-252:/$ rm ~/Dir*
+ubuntu@ip-172-31-20-252:/$ tree ~/
+/home/ubuntu/
+├── DevOnline.sql
+└── DevOnline_rds.sql
+```
+
+- 6 Perform the following sequence of operations:
+create a subdirectory test in the home directory;
+```
+ubuntu@ip-172-31-20-252:/$ mkdir ~/test
+```
+
+
+copy the .bash_history file to this directory while changing its name to
+labwork2;
+```
+ubuntu@ip-172-31-20-252:/$ cp ~/.bash_history ~/test/labwork2
+ubuntu@ip-172-31-20-252:/$ tree ~/
+/home/ubuntu/
+├── DevOnline.sql
+├── DevOnline_rds.sql
+└── test
+    └── labwork2
+
+```
+
+create a hard and soft link to the labwork2 file in the test subdirectory;
+```
+
+```
+
+how to define soft and hard link, what do these
+concepts;
+
+change the data by opening a symbolic link. What changes will happen and
+why
+
+rename the hard link file to hard_lnk_labwork2;
+
+rename the soft link file to symb_lnk_labwork2 file;
+
+then delete the labwork2. What changes have occurred and why?
+
