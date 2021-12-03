@@ -449,18 +449,131 @@ ubuntu@ip-172-31-20-252:/$ tree ~/
 
 create a hard and soft link to the labwork2 file in the test subdirectory;
 ```
+ubuntu@ip-172-31-20-252:~/test$ ln labwork2 hard_labwork2
+ubuntu@ip-172-31-20-252:~/test$ ls -ilh
+total 8.0K
+256748 -rw------- 2 ubuntu ubuntu 1.2K Dec  2 15:10 hard_labwork2
+256748 -rw------- 2 ubuntu ubuntu 1.2K Dec  2 15:10 labwork2
 
+ubuntu@ip-172-31-20-252:~/test$ ln -s labwork2 sym_labwork2
+ubuntu@ip-172-31-20-252:~/test$ ls -ilh
+total 8.0K
+256748 -rw------- 2 ubuntu ubuntu 1.2K Dec  2 15:10 hard_labwork2
+256748 -rw------- 2 ubuntu ubuntu 1.2K Dec  2 15:10 labwork2
+256174 lrwxrwxrwx 1 ubuntu ubuntu    8 Dec  3 14:04 sym_labwork2 -> labwork2
 ```
 
 how to define soft and hard link, what do these
 concepts;
+```
+Hard Link can be determined by same inod number in different file system objects number in output comand ls -il.
+Soft link marked like "l" before permissions, example "lrwxrwxrwx".
+```
 
 change the data by opening a symbolic link. What changes will happen and
 why
+```
+There chenges file where refer symlink becouse simlimk it only link - special file, not target file.
+```
 
 rename the hard link file to hard_lnk_labwork2;
+```
+ubuntu@ip-172-31-20-252:~/test$ mv hard_labwork2 hard_lnk_labwork2
+ubuntu@ip-172-31-20-252:~/test$ ls -l
+total 8
+-rw------- 2 ubuntu ubuntu 1203 Dec  3 14:34 hard_lnk_labwork2
+-rw------- 2 ubuntu ubuntu 1203 Dec  3 14:34 labwork2
+lrwxrwxrwx 1 ubuntu ubuntu    8 Dec  3 14:04 sym_labwork2 -> labwork2
+```
 
 rename the soft link file to symb_lnk_labwork2 file;
+```
+ubuntu@ip-172-31-20-252:~/test$ mv sym_labwork2 symb_lnk_labwork2
+ubuntu@ip-172-31-20-252:~/test$ ls -li
+total 8
+256748 -rw------- 2 ubuntu ubuntu 1203 Dec  3 14:34 hard_lnk_labwork2
+256748 -rw------- 2 ubuntu ubuntu 1203 Dec  3 14:34 labwork2
+256174 lrwxrwxrwx 1 ubuntu ubuntu    8 Dec  3 14:04 symb_lnk_labwork2 -> labwork2
+```
 
 then delete the labwork2. What changes have occurred and why?
+```
+ubuntu@ip-172-31-20-252:~/test$ rm labwork2
+ubuntu@ip-172-31-20-252:~/test$ ls -li
+total 4
+256748 -rw------- 1 ubuntu ubuntu 1203 Dec  3 14:34 hard_lnk_labwork2
+256174 lrwxrwxrwx 1 ubuntu ubuntu    8 Dec  3 14:04 symb_lnk_labwork2 -> labwork2 //flagged red color
+
+File labwork2 is continue existing becouse it have one inode with additional name (hardlink).
+Soft link is not wokr becouse target file doesn't exist.
+```
+- 7
+Using the locate utility, find all files that contain the squid and traceroute
+sequence.
+```
+ubuntu@ip-172-31-20-252:/$ locate -i -A squid
+/usr/lib/python3/dist-packages/sos/report/plugins/__pycache__/squid.cpython-38.pyc
+/usr/lib/python3/dist-packages/sos/report/plugins/squid.py
+/usr/share/vim/vim81/syntax/squid.vim
+ubuntu@ip-172-31-20-252:/$ locate -i -A traceroute
+/etc/alternatives/traceroute6
+/etc/alternatives/traceroute6.8.gz
+/usr/bin/traceroute6
+/usr/bin/traceroute6.iputils
+/usr/share/man/man8/traceroute6.8.gz
+/usr/share/man/man8/traceroute6.iputils.8.gz
+/usr/src/linux-aws-5.11-headers-5.11.0-1020/tools/testing/selftests/net/traceroute.sh
+/usr/src/linux-aws-5.11-headers-5.11.0-1021/tools/testing/selftests/net/traceroute.sh
+/var/lib/dpkg/alternatives/traceroute6
+```
+- 8
+
+Determine which partitions are mounted in the system, as well as the types of
+these partitions.
+```
+ubuntu@ip-172-31-20-252:/dev$ df
+Filesystem     1K-blocks    Used Available Use% Mounted on
+/dev/root        8065444 2893312   5155748  36% /
+devtmpfs          489496       0    489496   0% /dev
+tmpfs             496104       0    496104   0% /dev/shm
+tmpfs              99224     828     98396   1% /run
+tmpfs               5120       0      5120   0% /run/lock
+tmpfs             496104       0    496104   0% /sys/fs/cgroup
+/dev/loop1         56832   56832         0 100% /snap/core18/2128
+/dev/loop0         25600   25600         0 100% /snap/amazon-ssm-agent/4046
+/dev/loop2         56832   56832         0 100% /snap/core18/2253
+/dev/loop3         63360   63360         0 100% /snap/core20/1169
+/dev/loop4         63360   63360         0 100% /snap/core20/1242
+/dev/loop5         68864   68864         0 100% /snap/lxd/21545
+/dev/loop6         68864   68864         0 100% /snap/lxd/21835
+/dev/loop7         33280   33280         0 100% /snap/snapd/13640
+/dev/loop8         43264   43264         0 100% /snap/snapd/14066
+tmpfs              99220       0     99220   0% /run/user/1000
+
+```
+or
+```
+ubuntu@ip-172-31-20-252:/dev$ sudo fdisk -l 
+//not all partition
+
+Disk /dev/xvda: 8 GiB, 8589934592 bytes, 16777216 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x3fa6b62f
+
+Device     Boot Start      End  Sectors Size Id Type
+/dev/xvda1 *     2048 16777182 16775135   8G 83 Linux
+
+
+Disk /dev/loop8: 42.18 MiB, 44220416 bytes, 86368 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+```
+
+
+
 
