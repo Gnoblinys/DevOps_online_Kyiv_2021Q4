@@ -574,6 +574,152 @@ I/O size (minimum/optimal): 512 bytes / 512 bytes
 
 ```
 
+- 9
+Count the number of lines containing a given sequence of characters in a given
+file
+```
+ubuntu@ip-172-31-20-252:~/test$ grep -c Dev hard_lnk_labwork2
+12
+ubuntu@ip-172-31-20-252:~/test$ grep Dev hard_lnk_labwork2
+sudo mysqldump DevOnline
+sudo mysqldump DevOnline > /home/backupDB/DevOnline.sql
+sudo mysqldump DevOnline > /home/ubuntu/DevOnline.sql
+sudo mysql DevOnline < /home/ubuntu/DevOnline.sql
+aws s3 mv /home/ubuntu/DevOnline.sql
+aws s3 mv /home/ubuntu/DevOnline.sql dbdevonlinebackup
+aws s3 mv /home/ubuntu/DevOnline.sql arn:aws:s3:::dbdevonlinebackup
+aws s3 cp /home/ubuntu/DevOnline.sql arn:aws:s3:::dbdevonlinebackup
+aws s3 сз /home/ubuntu/DevOnline.sql dbdevonlinebackup
+aws s3 cp /home/ubuntu/DevOnline.sql dbdevonlinebackup
+aws s3 cp /home/ubuntu/DevOnline.sql /dbdevonlinebackup
+aws s3 cp /home/ubuntu/DevOnline.sql s3://dbdevonlinebackup/
+```
+- 10
+
+Using the find command, find all files in the /etc directory containing the
+host character sequence
+
+```
+ubuntu@ip-172-31-20-252:~/test$ find /etc -type f -exec grep 'host' {} \;
+/etc/e2scrub.conf:# sender=e2scrub@host.domain.name
+grep: /etc/iscsi/iscsid.conf: Permission denied
+grep: /etc/iscsi/initiatorname.iscsi: Permission denied
+/etc/perl/Net/libnet.cfg:       nntp_hosts => [ qw {} ],
+/etc/perl/Net/libnet.cfg:       snpp_hosts => [ qw {} ],
+/etc/perl/Net/libnet.cfg:       pop3_hosts => [ qw {} ],
+/etc/perl/Net/libnet.cfg:       smtp_hosts => [ qw {} ],
+/etc/perl/Net/libnet.cfg:       ph_hosts => [ qw {} ],
+/etc/perl/Net/libnet.cfg:       daytime_hosts => [ qw {} ],
+/etc/perl/Net/libnet.cfg:       time_hosts => [ qw {} ],
+/etc/hosts:127.0.0.1 localhost
+/etc/hosts:# The following lines are desirable for IPv6 capable hosts
+/etc/hosts:::1 ip6-localhost ip6-loopback
+/etc/hosts:ff02::3 ip6-allhosts
+
+
+and more...
+```
+
+- 11
+
+List all objects in /etc that contain the ss character sequence. How can I
+duplicate a similar command using a bunch of grep?
+
+```
+ubuntu@ip-172-31-20-252:~/test$ ls /etc -R | grep "ss"
+gss
+issue
+issue.net
+nsswitch.conf
+passwd
+passwd-
+ssh
+ssl
+Xsession
+Xsession.d
+Xsession.options
+/etc/X11/Xsession.d:
+20x11-common_process-args
+40x11-common_xsessionrc
+90x11-common_ssh-agent
+
+and more...
+```
+
+- 12
+
+Organize a screen-by-screen print of the contents of the /etc directory. Hint:
+You must use stream redirection operations.
+
+```
+ls /etc -R | less
+
+/etc:
+ImageMagick-6
+NetworkManager
+PackageKit
+X11
+acpi
+adduser.conf
+alternatives
+apparmor
+apparmor.d
+apport
+apt
+at.deny
+bash.bashrc
+
+
+and more...
+```
+
+- 13
+
+What are the types of devices and how to determine the type of device? Give
+examples.
+
+I didn't understant context.
+
+- 14
+
+How to determine the type of file in the system, what types of files are there?
+
+```
+ubuntu@ip-172-31-20-252:~$  file -i /dev/*
+/dev/autofs:          inode/chardevice; charset=binary
+/dev/block:           inode/directory; charset=binary
+/dev/btrfs-control:   inode/chardevice; charset=binary
+/dev/char:            inode/directory; charset=binary
+/dev/console:         inode/chardevice; charset=binary
+/dev/core:            inode/symlink; charset=binary
+/dev/cpu:             inode/directory; charset=binary
+/dev/cpu_dma_latency: inode/chardevice; charset=binary
+/dev/cuse:            inode/chardevice; charset=binary
+/dev/disk:            inode/directory; charset=binary
+/dev/dma_heap:        inode/directory; charset=binary
+/dev/ecryptfs:        inode/chardevice; charset=binary
+/dev/fd:              inode/symlink; charset=binary
+
+```
+
+- 15
+
+List the first 5 directory files that were recently accessed in the /etc directory.
+
+```
+ubuntu@ip-172-31-20-252:~$ ls /etc -u -l | head -n 5
+total 856
+drwxr-xr-x 2 root root       4096 Dec  5 16:25 ImageMagick-6
+drwxr-xr-x 3 root root       4096 Dec  5 16:25 NetworkManager
+drwxr-xr-x 2 root root       4096 Dec  5 16:25 PackageKit
+drwxr-xr-x 7 root root       4096 Dec  5 16:25 X11
+
+```
+
+
+
+
+
 
 
 
