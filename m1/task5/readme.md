@@ -723,6 +723,125 @@ drwxr-xr-x 7 root root       4096 Dec  5 16:25 X11
 
 ```
 
+# Task 5.2 #
+- 1
+
+Analyze the structure of the /etc/passwd and /etc/group file, what fields are
+present in it, what users exist on the system? Specify several pseudo-users, how
+to define them?
+
+less /etc/passwd
+
+```
+jhon:x:1001:1001:,,,:/home/jhon:/bin/bash
+[--] - [--] [--] [--] [-------] [--------]
+|    |   |    |     |         |        |
+|    |   |    |     |         |        +-> 7. Login shell
+|    |   |    |     |         +----------> 6. Home directory
+|    |   |    |     +--------------------> 5. GECOS
+|    |   |    +--------------------------> 4. GID
+|    |   +-------------------------------> 3. UID
+|    +-----------------------------------> 2. Password
++----------------------------------------> 1. Username
+
+```
+nologin - pseudo-user, users for system srvices.
+```
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+
+```
+
+less /etc/group
+
+```
+adm:x:4:syslog,ubuntu
+[-] -[-] [------------] 
+ |  | |         |+--------> 4. group members
+ |  | |+------------------> 3. GID
+ |  |+--------------------> 2. password group
+ |+-----------------------> 1. UID
+
+```
+ - 2
+ What are the uid ranges? What is UID? How to define it?
+
+UID -  User IDentifier 
+Ranges:
+0 - always root user
+from 0 to 500 or 1000 (depending on distributions) - reserve for system users.
+from 501 or 1001 - new users creating through useradd coomad.
+
+It described in /etc/passwd file.
+
+- 3
+
+What is GID? How to define it?
+
+GID - Group IDentifier
+
+It described in /etc/group file.
+
+- 4 How to determine belonging of user to the specific group?
+```
+ubuntu@ip-172-31-20-252:/$ grep ubuntu etc/group
+adm:x:4:syslog,ubuntu
+dialout:x:20:ubuntu
+cdrom:x:24:ubuntu
+floppy:x:25:ubuntu
+sudo:x:27:ubuntu
+audio:x:29:ubuntu
+dip:x:30:ubuntu
+video:x:44:ubuntu
+plugdev:x:46:ubuntu
+netdev:x:117:ubuntu
+lxd:x:118:ubuntu
+ubuntu:x:1000:
+```
+or
+```
+groups ubuntu | grep adm
+ubuntu : ubuntu adm dialout cdrom floppy sudo audio dip video plugdev netdev lxd
+
+```
+ - 5
+
+What are the commands for adding a user to the system? What are the basic
+parameters required to create a user?
+
+adduser - adding user to system. For adding new user we have to describe 2 parameters: name and password. 
+Or  useradd - more sample comand, creating users without passwords.
+
+It is optional:
+    Full Name []:
+    Room Number []:
+    Work Phone []:
+    Home Phone []:
+    Other []:
+
+ ```
+ ubuntu@ip-172-31-20-252:/$ sudo adduser jhon
+Adding user `jhon' ...
+Adding new group `jhon' (1001) ...
+Adding new user `jhon' (1001) with group `jhon' ...
+Creating home directory `/home/jhon' ...
+Copying files from `/etc/skel' ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for jhon
+Enter the new value, or press ENTER for the default
+        Full Name []:
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n] y
+
+```
+
+
 
 
 
