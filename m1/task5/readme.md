@@ -1,4 +1,4 @@
-# Task 1 #
+# Task 5.1 #
 
 ##  Part 1 ##
 
@@ -678,7 +678,14 @@ and more...
 What are the types of devices and how to determine the type of device? Give
 examples.
 
-I didn't understant context.
+Use comand file or ls (we gate almost same result)
+```
+ubuntu@ip-172-31-20-252:/dev$ file -i *
+some results:
+xvda:            inode/blockdevice; charset=binary //disk
+tty:             inode/chardevice; charset=binary //serial port
+psaux:           inode/chardevice; charset=binary // PS/2 mouse connection (mice, keyboards).
+```
 
 - 14
 
@@ -715,7 +722,6 @@ drwxr-xr-x 2 root root       4096 Dec  5 16:25 PackageKit
 drwxr-xr-x 7 root root       4096 Dec  5 16:25 X11
 
 ```
-
 
 
 
