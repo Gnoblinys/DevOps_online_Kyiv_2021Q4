@@ -841,6 +841,87 @@ Is the information correct? [Y/n] y
 
 ```
 
+- 6
+
+How do I change the name (account name) of an existing user?
+
+usermod -l new_username old_username // it coman doesn't change home directory name
+```
+less /etc/passwd
+jhon:x:1001:1001:,,,:/home/jhon:/bin/bash
+
+ubuntu@ip-172-31-20-252:~$ sudo usermod -l jack jhon
+
+less /etc/passwd
+jack:x:1001:1001:,,,:/home/jhon:/bin/bash
+```
+- 7 
+
+What is skell_dir? What is its structure?
+
+/etc/skel - it is setap default parametrs for created new users
+```
+ubuntu@ip-172-31-20-252:~$ tree -a /etc/skel
+/etc/skel
+├── .bash_logout
+├── .bashrc
+└── .profile
+
+```
+
+- 8
+
+How to remove a user from the system (including his mailbox)?
+
+ deluser --remove-home username // for delete user and home dir
+ deluser --remove-all-files uername // for delete user, home dir and all users files in system. 
+
+ ```
+ubuntu@ip-172-31-20-252:/etc/skel$ sudo deluser --remove-home jack
+Looking for files to backup/remove ...
+Removing files ...
+Removing user `jack' ...
+Warning: group `jhon' has no more members.
+Done.
+```
+
+- 9 
+
+What commands and keys should be used to lock and unlock a user account?
+
+usermod -e EXPIRE_DATE//  --expiredate EXPIRE_DATE
+           The date on which the user account will be disabled. The date is specified in the format
+           YYYY-MM-DD.
+or
+passwd -l user_name
+usermod -L, --lock //it methods don't lock access through SSH!!!
+           Lock a user's password. This puts a '!' in front of the encrypted password, effectively
+           disabling the password. You can't use this option with -p or -U.
+
+```
+sudo usermod -e 2021-12-07 jack
+sudo usermod -U jack //unlock
+```
+- 10
+
+How to remove a user's password and provide him with a password-free
+login for subsequent password change?
+
+passwd -d username
+passwd -e username
+
+```
+ubuntu@ip-172-31-20-252:/etc/skel$ sudo passwd -d jack
+passwd: password expiry information changed.
+ubuntu@ip-172-31-20-252:/etc/skel$ sudo passwd -e jack
+passwd: password expiry information changed.
+```
+
+
+
+
+
+
 
 
 
