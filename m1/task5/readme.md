@@ -916,7 +916,151 @@ passwd: password expiry information changed.
 ubuntu@ip-172-31-20-252:/etc/skel$ sudo passwd -e jack
 passwd: password expiry information changed.
 ```
+- 11
 
+Display the extended format of information about the directory, tell about
+the information columns displayed on the terminal
+
+```
+ubuntu@ip-172-31-20-252:/$ ls -alhi
+total 72K
+    2 drwxr-xr-x 19  root root 4.0K Dec  8 13:27 .
+    2 drwxr-xr-x 19  root root 4.0K Dec  8 13:27 ..
+   13 drwxr-xr-x  3  root root 4.0K Dec  6 14:34 boot
+ 1521 lrwxrwxrwx  1  root root    9 Oct 21 23:23 lib64 -> usr/lib64
+ [1]      [2]    [3] [4]  [5]  [6]  [      7   ] [        8        ]
+
+ 1. inode
+ 2. permission
+ 3. number of links in system
+ 4. owner user
+ 5. owner group
+ 6. size
+ 7. laste date of create/edit/access 
+ 8. name
+ ```
+
+ - 12
+
+ What access rights exist and for whom (i. e., describe the main roles)?
+Briefly describe the acronym for access rights.
+
+Permission
+```
+rwx|rwx|rwx
+ |   |   |--> others
+ |   |------> group
+ |----------> owner
+```
+ For change permissions we can use comand chmod:
+
+ > chmod ugo+rwx filename
+
+```
+ u - user
+ g - group
+ o - other
+```
+
+```
+ r - allow read
+ w - allow write
+ x - allow execute
+```
+or nuber codes:
+
+ > chmod 777 filename
+
+```
+0 - without permission
+1 - only execute
+2 - only write
+3 - execute and write
+4 - only read
+5 - read and execute
+6 - read and write
+7 - read, write and execute
+```
+
+ - 13
+
+ What is the sequence of defining the relationship between the file and the
+user?
+```
+                                User trying rwx file\dir
+                                System check permission:
+                                       User is owner?
+                                       Yes       Not
+                                       /           \
+Allow acces according to owner permissins           User is member of group?
+                                                            Yes   Not
+                                                           /       |
+                  Allow acces according to group permissins        |
+                                                                   |
+                                                      Yser is member of owner?
+                                                        Yes          Not
+                                                       /               \
+              Allow acces according to group permissins            disallow acces
+```
+- 14
+
+What commands are used to change the owner of a file (directory), as well
+as the mode of access to the file? Give examples, demonstrate on the terminal.
+
+```
+ubuntu@ip-172-31-20-252:~/test$ ls -l | grep test
+-rwx-wx-wx 1 ubuntu ubuntu     0 Dec  8 15:08 test
+
+ubuntu@ip-172-31-20-252:~/test$ sudo chown jack:jack test
+ubuntu@ip-172-31-20-252:~/test$ ls -l | grep test
+-rwx-wx-wx 1 jack   jack       0 Dec  8 15:08 test
+
+```
+
+- 15
+
+What is an example of octal representation of access rights? Describe the
+umask command.
+
+```
+0 - without permission
+1 - only execute
+2 - only write
+3 - execute and write
+4 - only read
+5 - read and execute
+6 - read and write
+7 - read, write and execute
+```
+
+umask - sets permissions for new files in while terminal session. Doesn't set permission execute for files.
+
+```
+ubuntu@ip-172-31-20-252:~/test$ umask -p
+umask 0002
+ubuntu@ip-172-31-20-252:~/test$ umask -S
+u=rwx,g=rwx,o=rx
+
+```
+- 16
+
+Give definitions of sticky bits and mechanism of identifier substitution. Give
+an example of files and directories with these attributes.
+
+```
+A Sticky bit is a permission bit that is set on a file or a directory that lets only the owner of the file/directory or the root user to delete or rename the file. No other user is given privileges to delete the file created by some other user.
+```
+
+```
+ubuntu@ip-172-31-20-252:/$ ls -ld
+drwxr-xr-x 19 root root 4096 Dec  8 13:27 .
+
+d- Sticky bit
+```
+
+- 17
+
+What file attributes should be present in the command script
 
 
 
