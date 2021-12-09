@@ -337,7 +337,7 @@ d- Sticky bit
 
 What file attributes should be present in the command script
 
-File with comand skript mast have attribute "x" for distanation users and group or SUID "s" for start skript with permission file owner.
+File with comand skript mast have attribute "x" for distanation users and group or SUID/SGID "s"   for start skript with permission file owner.
 
 
 
