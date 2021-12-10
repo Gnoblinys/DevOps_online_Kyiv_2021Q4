@@ -134,7 +134,7 @@ upload: ./DevOnline.sql to s3://dbdevonlinebackup/DevOnline.sql
 
 
 
-| Тип      | Ссылка |
+| Type      | Link |
 |----------|---------|
 |Install MySQL|https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04-ru|
 |Password polices |https://blog.programs74.ru/how-to-resolve-mysql-error-1819/|
