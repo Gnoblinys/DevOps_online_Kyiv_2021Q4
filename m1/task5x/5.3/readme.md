@@ -358,6 +358,113 @@ amount of processor time taken up, etc.)
 
 - 14
 
+Concept of priority, what commands are used to set priority?
+
+NI - priotity have range from -20 to 19.
+ 
+-20 have haest priority, 19 lowest.
+
+```
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    584 mysql     20   0 1291776 354388   9112 S   0.3  35.7   0:23.04 mysqld
+   9381 ubuntu    20   0   11048   3932   3252 R   0.3   0.4   0:00.02 top
+      1 root      20   0  168632  10964   6536 S   0.0   1.1   0:06.53 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kthreadd
+      3 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_gp
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 rcu_par_gp
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri
+      9 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 mm_percpu_wq
+     10 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_rude_
+     11 root      20   0       0      0      0 S   0.0   0.0   0:00.00 rcu_tasks_trace
+
+```
+
+- 15
+
+Can I change the priority of a process using the top command? If so, how?
+
+You must start top with sudo, push r and write number process pid for chenge:
+
+```
+PID to renice [default pid = 9417] 25
+```
+than write priority value:
+
+```
+Renice PID 25 to value 6
+```
+
+- 16
+
+Examine the kill command. How to send with the kill command
+process control signal? Give an example of commonly used signals.
+
+
+The  default  signal  for  kill  is TERM.  Particularly useful signals include HUP, INT, KILL, STOP, CONT, and 0.
+
+Kill has 64 diferent signal:
+```
+
+ubuntu@ip-172-31-20-252:/etc$ kill -L
+ 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
+ 6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1
+11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM
+16) SIGSTKFLT   17) SIGCHLD     18) SIGCONT     19) SIGSTOP     20) SIGTSTP
+21) SIGTTIN     22) SIGTTOU     23) SIGURG      24) SIGXCPU     25) SIGXFSZ
+26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGIO       30) SIGPWR
+31) SIGSYS      34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3
+38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8
+43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13
+48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12
+53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
+58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
+63) SIGRTMAX-1  64) SIGRTMAX
+```
+
+```
+ubuntu@ip-172-31-20-252:/etc$ ps -aux | grep mysql
+mysql        584  0.1 35.7 1291776 354388 ?      Ssl  13:32   0:24 /usr/sbin/mysqld
+ubuntu@ip-172-31-20-252:/etc$ sudo kill -KILL 584
+ubuntu@ip-172-31-20-252:/etc$ ps -aux | grep mysql
+mysql       9493 41.5 40.2 1304648 399364 ?      Ssl  19:05   0:00 /usr/sbin/mysqld  //PID 584 was killed but have apped again as new process with PID 9493.
+```
+- 17
+
+Commands jobs, fg, bg, nohup. What are they for? Use the sleep, yes command to
+demonstrate the process control mechanism with fg, bg.
+
+```
+ubuntu@ip-172-31-20-252:/etc$ ping 8.8.8.8 >/dev/null &
+[1] 9623
+ubuntu@ip-172-31-20-252:/etc$ jobs
+[1]+  Running                 ping 8.8.8.8 > /dev/null &
+ubuntu@ip-172-31-20-252:/etc$ fg
+ping 8.8.8.8 > /dev/null
+^Z
+[1]+  Stopped                 ping 8.8.8.8 > /dev/null
+ubuntu@ip-172-31-20-252:/etc$ jobs
+[1]+  Stopped                 ping 8.8.8.8 > /dev/null
+ubuntu@ip-172-31-20-252:/etc$ bg
+[1]+ ping 8.8.8.8 > /dev/null &
+ubuntu@ip-172-31-20-252:/etc$ jobs
+[1]+  Running                 ping 8.8.8.8 > /dev/null &
+ubuntu@ip-172-31-20-252:/etc$ fg
+ping 8.8.8.8 > /dev/null
+^Cubuntu@ip-172-31-20-252:/etc$ jobs
+ubuntu@ip-172-31-20-252:/etc$
+```
+nohup - run a command immune to hangups, with output to a non-tty
+
+sleep - delay for a specified amount of time
+
+yes - output a string repeatedly until killed
+
+
+
+
+
+
 
 
 
