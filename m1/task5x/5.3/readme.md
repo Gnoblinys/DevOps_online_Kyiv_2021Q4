@@ -460,7 +460,97 @@ sleep - delay for a specified amount of time
 
 yes - output a string repeatedly until killed
 
+## Part 2 ##
 
+- 1
+
+Check the implementability of the most frequently used OPENSSH commands in the MS
+Windows operating system. (Description of the expected result of the commands +
+screenshots: command – result should be presented)
+
+Generating public/private rsa key pair.
+
+-t - Specifies the type of key to create.
+
+> ssh-keygen -t rsa
+
+```
+C:\Users\itigo>ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (C:\Users\itigo/.ssh/id_rsa): C:\Users\itigo\.ssh\Test
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in C:\Users\itigo\.ssh\Test.
+Your public key has been saved in C:\Users\itigo\.ssh\Test.pub.
+The key fingerprint is:
+SHA256:buQelNNRTT5+B/UDbPIotlp4mNTcVb+wfmwy3ImpY4U itigo@EXTREME
+The key's randomart image is:
++---[RSA 3072]----+
+|            o+o..|
+|           o =o.o|
+|        o o *.+.o|
+|       . B + oooo|
+|      . S + ....o|
+|       O = Eo.=.o|
+|        O   .B * |
+|       + . o. =  |
+|        . ...    |
++----[SHA256]-----+
+```
+
+
+Connetc to ssh server use rsa key
+
+> ssh -i ~/.ssh/id_rsa azureuser@10.111.12.123
+
+```
+C:\Users\itigo>ssh -i "SOME_KEY_DIR\EC2.pem" ubuntu@18.218.161.59
+Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.11.0-1022-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sat Dec 11 20:25:10 UTC 2021
+
+  System load:  0.0               Processes:             108
+  Usage of /:   40.8% of 7.69GB   Users logged in:       1
+  Memory usage: 55%               IPv4 address for eth0: 172.31.20.252
+  Swap usage:   0%
+
+
+0 updates can be applied immediately.
+
+
+Last login: Sat Dec 11 20:08:53 2021 from 176.38.59.43
+```
+
+- 2
+
+ Implement basic SSH settings to increase the security of the client-server connection (at least 
+
+We can add passphrase while create key and change default port:
+
+```
+
+ubuntu@ip-172-31-20-252:~$ nano /etc/ssh/sshd_config
+#Port 22 > Port 1565 (example)
+
+/etc/init.d/ssh restart
+```
+
+
+
+- 4
+
+Implement port forwarding for the SSH client from the host machine to the guest Linux
+
+I use aws. It will be realize in task 6.
+
+- 5
+
+Intercept (capture) traffic (tcpdump, wireshark) while authorizing the remote client on the
+server using ssh, telnet, rlogin. Analyze the result.
 
 
 
