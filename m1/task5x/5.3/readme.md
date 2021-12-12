@@ -539,6 +539,31 @@ ubuntu@ip-172-31-20-252:~$ nano /etc/ssh/sshd_config
 /etc/init.d/ssh restart
 ```
 
+- 3
+
+List the options for choosing keys for encryption in SSH. Implement 3 of them
+
+-t dsa | ecdsa | ecdsa-sk | ed25519 | ed25519-sk | rsa
+Specifies the type of key to create. The possible values are “dsa”, “ecdsa”, “ecdsa-sk”, “ed25519”, “ed25519-sk”, or “rsa”.
+
+```
+ubuntu@ip-172-31-20-252:~$ ssh-keygen -t dsa
+
+ubuntu@ip-172-31-20-252:~$ ssh-keygen -t ed25519
+
+ubuntu@ip-172-31-20-252:~$ ssh-keygen -t rsa
+
+ubuntu@ip-172-31-20-252:~$ ls -l
+total 64
+-rw-rw-r-- 1 ubuntu ubuntu  3398 Nov 27 20:53 DevOnline.sql
+-rw-rw-r-- 1 ubuntu ubuntu  3656 Nov 29 13:57 DevOnline_rds.sql
+-rw------- 1 ubuntu ubuntu  1393 Dec 12 15:14 dsa
+-rw-r--r-- 1 ubuntu ubuntu   613 Dec 12 15:14 dsa.pub
+-rw------- 1 ubuntu ubuntu   419 Dec 12 15:15 ed25519
+-rw-r--r-- 1 ubuntu ubuntu   105 Dec 12 15:15 ed25519.pub
+-rw------- 1 ubuntu ubuntu  2610 Dec 12 15:15 rsa
+-rw-r--r-- 1 ubuntu ubuntu   577 Dec 12 15:15 rsa.pub
+```
 
 
 - 4
@@ -552,8 +577,11 @@ I use aws. It will be realize in task 6.
 Intercept (capture) traffic (tcpdump, wireshark) while authorizing the remote client on the
 server using ssh, telnet, rlogin. Analyze the result.
 
+SSH transfer data through encrypted packet. Telnet transfer packet without encrypt.
 
+![5.ssht](IMAGES/5.ssht.jpg)
 
+![4.telnet](images/4.telnet.jpg)
 
 
 
