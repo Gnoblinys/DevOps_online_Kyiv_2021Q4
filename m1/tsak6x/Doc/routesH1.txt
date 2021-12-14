@@ -1,0 +1,7 @@
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         _gateway        0.0.0.0         UG    100    0        0 eth0
+default         _gateway        0.0.0.0         UG    200    0        0 eth1
+10.0.1.0        0.0.0.0         255.255.255.0   U     0      0        0 eth0
+_gateway        0.0.0.0         255.255.255.255 UH    100    0        0 eth0
+10.0.5.0        0.0.0.0         255.255.255.0   U     0      0        0 eth1
+_gateway        0.0.0.0         255.255.255.255 UH    200    0        0 eth1
