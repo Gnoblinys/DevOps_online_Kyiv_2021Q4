@@ -106,6 +106,16 @@ root@ip-10-0-1-145:/home/ubuntu# lshw -C network
 
 Setup eth1 (eth0 was desable after update systeam)
 
+Create file
+
+> toush /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+
+and add:
+
+> network: {config: disabled}
+
+
+Change file nano 
 > nano /etc/netplan/50-cloud-init.yaml
 
 
