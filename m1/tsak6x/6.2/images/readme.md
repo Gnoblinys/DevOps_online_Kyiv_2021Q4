@@ -97,7 +97,7 @@ net.ipv4.conf.all.rp_filter=0
 sysctl -p
 ```
 
-Install quagga in H1-H2-H3 hosts
+Install quagga in H1 & H2 hosts
 
 ```
 sudo apt install quagga
@@ -206,13 +206,123 @@ network 10.0.5.0/24 area 1
 !
 line vty
 !
+```
+```
+sudo chown quagga:quagga /etc/quagga/*.conf
+mkdir /var/log/quagga/
+chown quagga:quagga /var/log/quagga/
+sudo service zebra status
+sudo service zebra restart
+sudo service ospfd status
+sudo service ospfd restart
+```
+
+Test H1
+```
+root@ip-10-0-1-30:/home/ubuntu# tcpdump -nvi any proto ospf
+tcpdump: listening on any, link-type LINUX_SLL (Linux cooked v1), capture size 262144 bytes
+19:09:15.277285 IP (tos 0xc0, ttl 1, id 54465, offset 0, flags [none], proto OSPF (89), length 64)
+    10.0.5.34 > 224.0.0.5: OSPFv2, Hello, length 44
+        Router-ID 10.0.5.34, Area 0.0.0.1, Authentication Type: none (0)
+        Options [External]
+          Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.0, Priority 1
+```
+
+Test H2
+```
+root@ip-10-0-1-145:/home/ubuntu# tcpdump -nvi any proto ospf
+tcpdump: listening on any, link-type LINUX_SLL (Linux cooked v1), capture size 262144 bytes
+19:07:45.530923 IP (tos 0xc0, ttl 1, id 54384, offset 0, flags [none], proto OSPF (89), length 64)
+    10.0.5.145 > 224.0.0.5: OSPFv2, Hello, length 44
+        Router-ID 10.0.5.34, Area 0.0.0.1, Authentication Type: none (0)
+        Options [External]
+          Hello Timer 10s, Dead Timer 40s, Mask 255.255.255.0, Priority 1
+```
 
 
+AWS networks has some truble with bropadcast trafik... I had to added ip tunel for test OSPF..
+```
+ip tunnel add tun0 mode ipip remote 10.0.5.145 local 10.0.5.34 dev eth1
+ifconfig tun0 10.0.20.1 netmask 255.255.255.252 pointopoint 10.0.20.2
+ifconfig tun0 mtu 1500
+ifconfig tun0 up
+```
+
+Test!
 
 
+H2 new route to H1
 
+H2:
+```
+root@ip-10-0-1-145:/home/ubuntu# ip route add 10.0.15.0 dev eth1
+root@ip-10-0-1-145:/home/ubuntu# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         _gateway        0.0.0.0         UG    100    0        0 eth1
+10.0.5.0        0.0.0.0         255.255.255.0   U     0      0        0 eth1
+10.0.15.0       0.0.0.0         255.255.255.0   U     500    0        0 eth1
+10.0.20.0       0.0.0.0         255.255.255.252 U     0      0        0 tun0
+```
+H1:
+```
+root@ip-10-0-1-30:/home/ubuntu# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         10.0.1.1        0.0.0.0         UG    100    0        0 eth0
+default         10.0.5.1        0.0.0.0         UG    200    0        0 eth1
+10.0.1.0        0.0.0.0         255.255.255.0   U     0      0        0 eth0
+10.0.1.1        0.0.0.0         255.255.255.255 UH    100    0        0 eth0
+10.0.5.0        0.0.0.0         255.255.255.0   U     0      0        0 eth1
+10.0.5.1        0.0.0.0         255.255.255.255 UH    200    0        0 eth1
+10.0.15.0       10.0.20.2       255.255.255.0   UG    20     0        0 tun0
+10.0.20.0       0.0.0.0         255.255.255.252 U     0      0        0 tun0
+```
 
+H1 new route to H2
 
+H1:
+```
+root@ip-10-0-1-30:/home/ubuntu# ip route add 192.168.1.0 dev eth1
+root@ip-10-0-1-30:/home/ubuntu# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         10.0.1.1        0.0.0.0         UG    100    0        0 eth0
+default         10.0.5.1        0.0.0.0         UG    200    0        0 eth1
+10.0.1.0        0.0.0.0         255.255.255.0   U     0      0        0 eth0
+10.0.1.1        0.0.0.0         255.255.255.255 UH    100    0        0 eth0
+10.0.5.0        0.0.0.0         255.255.255.0   U     0      0        0 eth1
+10.0.5.1        0.0.0.0         255.255.255.255 UH    200    0        0 eth1
+10.0.15.0       10.0.20.2       255.255.255.0   UG    20     0        0 tun0
+10.0.20.0       0.0.0.0         255.255.255.252 U     0      0        0 tun0
+192.168.1.0     0.0.0.0         255.255.255.255 UH    0      0        0 eth1
+```
+H2:
+```
+root@ip-10-0-1-145:/home/ubuntu# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         _gateway        0.0.0.0         UG    100    0        0 eth1
+10.0.1.0        10.0.20.1       255.255.255.0   UG    20     0        0 tun0
+10.0.1.1        10.0.20.1       255.255.255.255 UGH   20     0        0 tun0
+10.0.5.0        0.0.0.0         255.255.255.0   U     0      0        0 eth1
+10.0.5.1        10.0.20.1       255.255.255.255 UGH   20     0        0 tun0
+10.0.15.0       0.0.0.0         255.255.255.0   U     500    0        0 eth1
+10.0.20.0       0.0.0.0         255.255.255.252 U     0      0        0 tun0
+192.168.1.0     10.0.20.1       255.255.255.255 UGH   20     0        0 tun0
+```
+
+```
+root@ip-10-0-1-30:/home/ubuntu# tcpdump -i tun0
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on tun0, link-type RAW (Raw IP), capture size 262144 bytes
+20:24:04.381903 IP 10.0.20.2 > ospf-all.mcast.net: OSPFv2, Hello, length 48
+20:24:09.535339 IP 10.0.20.1 > ospf-all.mcast.net: OSPFv2, Hello, length 48
+20:24:10.836324 IP 10.0.20.2 > ospf-all.mcast.net: OSPFv2, LS-Update, length 64 //update route table from H2 to H1
+20:24:11.054018 IP 10.0.20.1 > ospf-all.mcast.net: OSPFv2, LS-Ack, length 44
+20:24:14.382285 IP 10.0.20.2 > ospf-all.mcast.net: OSPFv2, Hello, length 48
+
+```
 
 
 
@@ -232,4 +342,4 @@ line vty
 |Type|Link|
 |----|----|
 |DNSMASQ|[linhttps://infoit.com.uaux/ubuntu/](linhttps://infoit.com.uaux/ubuntu/kak-ustanovit-i-nastroit-dnsmasq-na-ubuntu-18-04-lts/)|
-
+|Quagga|[https://ixnfo.com/nastrojka-ospf-v-quagga.html](https://ixnfo.com/nastrojka-ospf-v-quagga.html)
