@@ -1,3 +1,4 @@
+# A Network
 - 1
 
 ```
@@ -74,3 +75,50 @@ exit ;;
 esac
 ```
 
+# B apache log
+
+```
+#!/bin/bash
+log=$2
+
+
+
+
+MostRequestFunc () {
+echo "Read log.."
+awk '{freq[$1]++} END{for (i in freq) print i, "(" freq[i] ")"}' $log | awk '{print $2, "requests from " $1}' | sed 's/[(,)]//g' | sort -n -r | >
+}
+
+
+CountRequestFunc () {
+echo "Read log.."
+awk '{freq[$1]++} END{for (i in freq) print i, "(" freq[i] ")"}' $log | awk '{print $2, "requests from " $1}' | sed 's/[(,)]//g' | sort -n
+}
+
+
+    case "$1" in
+
+        -mip) MostRequestFunc ;;
+        -mp) echo mp ;;
+        -rfip) CountRequestFunc ;;
+        -404) echo 404 ;;
+        -mrt) echo mrt ;;
+        -r) echo r ;;
+        -h) cat ~/log/man ;;
+        *) echo "You can use ./parser -h for see all options"
+    esac
+
+
+
+
+#Use: ./parcer [-key] (file.log)
+
+# -mip - From which ip were the most requests?
+
+# -mp - What is the most requested page?
+
+# -rfip - How many requests were there from each ip?
+
+# -404 -  What non-existent pages were clients referred to?
+
+```
