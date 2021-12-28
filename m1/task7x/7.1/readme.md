@@ -218,7 +218,41 @@ Read log...
 ```
 
 
-![robots](images/robots.png)
+```
+ubuntu@ip-10-0-1-30:~/log$ ./parser -r apache.log
+      1 http://ahrefs.com/robot/ 164.132.161.40
+      1 http://ahrefs.com/robot/ 164.132.161.63
+      1 http://ahrefs.com/robot/ 164.132.161.85
+      1 http://ahrefs.com/robot/ 217.182.132.183
+      8 http://go.mail.ru/help/robots 217.69.133.234
+      6 http://go.mail.ru/help/robots 217.69.133.235
+      7 http://go.mail.ru/help/robots 217.69.133.236
+      3 http://go.mail.ru/help/robots 217.69.133.237
+      4 http://go.mail.ru/help/robots 217.69.133.238
+     12 http://go.mail.ru/help/robots 217.69.133.239
+      6 http://go.mail.ru/help/robots 217.69.133.240
+      6 http://go.mail.ru/help/robots 217.69.133.70
+      6 http://go.mail.ru/help/robots 217.69.134.12
+      2 http://go.mail.ru/help/robots 217.69.134.13
+      2 http://go.mail.ru/help/robots 217.69.134.14
+      1 http://go.mail.ru/help/robots 217.69.134.15
+      5 http://go.mail.ru/help/robots 217.69.134.29
+      1 http://go.mail.ru/help/robots 217.69.134.30
+      1 http://go.mail.ru/help/robots 217.69.134.39
+     14 http://mj12bot.com/ 144.76.76.115
+      1 http://search.msn.com/msnbot.htm 40.77.167.19
+      1 http://www.bing.com/bingbot.htm 136.243.34.71
+      2 http://www.bing.com/bingbot.htm 207.46.13.109
+      1 http://www.bing.com/bingbot.htm 207.46.13.128
+      4 http://www.bing.com/bingbot.htm 207.46.13.3
+      2 http://www.bing.com/bingbot.htm 40.77.167.19
+      1 http://www.google.com/bot.html 66.249.66.194
+      5 http://www.google.com/bot.html 66.249.66.199
+      6 http://www.google.com/bot.html 66.249.66.204
+     11 http://yandex.com/bots 5.255.251.28
+
+```
+
 
 
 
