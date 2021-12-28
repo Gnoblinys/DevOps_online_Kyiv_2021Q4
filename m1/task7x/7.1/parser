@@ -32,6 +32,19 @@ echo "Read log..."
 awk '{print $4}' $log | sed 's/\[//g' | sed 's/...$//' | awk '{freq[$1]++} END{for (i in freq) print i, freq[i] }' | awk '{print $2, "requests from " $1}' | sort -n -r | head -1
 }
 
+
+
+RobotsFunc () {
+awk '/http.*bot.*/{print $1}' $log | cat -n > temp_ip
+grep -o 'http.*bot.*' $log | sed 's,)",,g' | cat -n > temp_bot
+paste temp_ip temp_bot > temp
+awk '{ if (length($0)<170) print $4,$2 }' temp | sort | uniq -c 
+rm temp*
+
+}
+
+
+
     case "$1" in
 
         -mip) MostRequestFunc ;;
@@ -39,7 +52,7 @@ awk '{print $4}' $log | sed 's/\[//g' | sed 's/...$//' | awk '{freq[$1]++} END{f
 	-rfip) CountRequestFunc ;;
 	-404) 404PageFunc ;;
 	-mrt) MostReqTimeFunc ;;
-	-r) echo r ;;
+	-r) RobotsFunc ;;
         -h) cat ~/log/man ;;
         *) echo "You can use ./parser -h for see all options"
     esac

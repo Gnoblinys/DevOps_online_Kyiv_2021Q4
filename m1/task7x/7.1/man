@@ -1,0 +1,15 @@
+
+Use: ./parcer [-key] (file.log) 
+
+ -mip - From which ip were the most requests? 
+
+ -mp - What is the most requested page? 
+
+ -rfip - How many requests were there from each ip?
+
+ -404 -  What non-existent pages were clients referred to?
+
+ -mrt -  What time did site get the most requests?
+
+ -r - What search bots have accessed the site? (UA + IP)
+
