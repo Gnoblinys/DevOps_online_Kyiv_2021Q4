@@ -254,6 +254,113 @@ ubuntu@ip-10-0-1-30:~/log$ ./parser -r apache.log
 ```
 
 
+# C Backup
+
+**Script**
+```
+
+#!/bin/bash
+
+if [ -n "$1" ] && [ -n "$2" ];
+then
+rsync -azvh --log-file=/home/ubuntu/backup/backup.log $1 $2 --delete &> /dev/null
+else
+rsync -azvh --log-file=/home/ubuntu/backup/backup.log /home/ubuntu/backup/data /home/ubuntu/backup/bdir --delete &>  /dev/null
+fi
+
+```
+
+
+**Check cron**
+
+```
+ubuntu@ip-10-0-1-30:~/backup$ cat /var/log/syslog
+
+Dec 29 19:45:01 ip-10-0-1-30 CRON[10191]: (ubuntu) CMD (/home/ubuntu/backup/backup.sh)
+Dec 29 19:46:01 ip-10-0-1-30 CRON[10200]: (ubuntu) CMD (/home/ubuntu/backup/backup.sh)
+Dec 29 19:47:01 ip-10-0-1-30 CRON[10210]: (ubuntu) CMD (/home/ubuntu/backup/backup.sh)
+Dec 29 19:48:01 ip-10-0-1-30 CRON[10223]: (ubuntu) CMD (/home/ubuntu/backup/backup.sh)
+Dec 29 19:49:01 ip-10-0-1-30 CRON[10237]: (ubuntu) CMD (/home/ubuntu/backup/backup.sh)
+Dec 29 19:50:01 ip-10-0-1-30 CRON[10246]: (ubuntu) CMD (/home/ubuntu/backup/backup.sh)
+Dec 29 19:51:01 ip-10-0-1-30 CRON[10254]: (ubuntu) CMD (/home/ubuntu/backup/backup.sh)
+Dec 29 19:52:01 ip-10-0-1-30 CRON[10261]: (ubuntu) CMD (/home/ubuntu/backup/backup.sh)
+
+```
+
+**Test script**
+```
+ubuntu@ip-10-0-1-30:~/backup$ ./backup.sh
+ubuntu@ip-10-0-1-30:~/backup$ ./backup.sh /home/ubuntu/backup/data /home/ubuntu/backup/bdir
+ubuntu@ip-10-0-1-30:~/backup$ cat backup.log
+2021/12/29 19:55:59 [10303] building file list
+2021/12/29 19:55:59 [10303] sent 171 bytes  received 19 bytes  380.00 bytes/sec
+2021/12/29 19:55:59 [10303] total size is 0  speedup is 0.00
+2021/12/29 19:56:01 [10309] building file list
+2021/12/29 19:56:01 [10309] sent 171 bytes  received 19 bytes  380.00 bytes/sec
+2021/12/29 19:56:01 [10309] total size is 0  speedup is 0.00
+```
+
+```
+ubuntu@ip-10-0-1-30:~/backup$ cat backup.log
+2021/12/29 19:45:01 [10193] building file list
+2021/12/29 19:45:01 [10193] created directory $
+2021/12/29 19:45:01 [10193] cd+++++++++ bdir/
+2021/12/29 19:45:01 [10193] >f+++++++++ bdir/file0
+2021/12/29 19:45:01 [10193] cd+++++++++ bdir/dir1/
+2021/12/29 19:45:01 [10193] >f+++++++++ bdir/dir1/file1
+2021/12/29 19:45:01 [10193] cd+++++++++ bdir/dir2/
+2021/12/29 19:45:01 [10193] >f+++++++++ bdir/dir2/file2
+2021/12/29 19:45:01 [10193] cd+++++++++ bdir/dir3/
+2021/12/29 19:45:01 [10193] cd+++++++++ data/
+2021/12/29 19:45:01 [10193] >f+++++++++ data/file0
+2021/12/29 19:45:01 [10193] cd+++++++++ data/dir1/
+2021/12/29 19:45:01 [10193] >f+++++++++ data/dir1/file1
+2021/12/29 19:45:01 [10193] cd+++++++++ data/dir2/
+2021/12/29 19:45:01 [10193] >f+++++++++ data/dir2/file2
+2021/12/29 19:45:01 [10193] cd+++++++++ data/dir3/
+2021/12/29 19:45:01 [10193] sent 595 bytes  received 186 bytes  1.56K bytes/sec
+2021/12/29 19:45:01 [10193] total size is 0  speedup is 0.00
+2021/12/29 19:46:01 [10202] building file list
+2021/12/29 19:46:01 [10202] sent 351 bytes  received 20 bytes  742.00 bytes/sec
+2021/12/29 19:46:01 [10202] total size is 0  speedup is 0.00
+2021/12/29 19:47:01 [10212] building file list
+2021/12/29 19:47:01 [10212] sent 351 bytes  received 20 bytes  742.00 bytes/sec
+2021/12/29 19:47:01 [10212] total size is 0  speedup is 0.00
+2021/12/29 19:48:01 [10225] building file list
+2021/12/29 19:48:01 [10225] sent 351 bytes  received 20 bytes  742.00 bytes/sec
+2021/12/29 19:48:01 [10225] total size is 0  speedup is 0.00
+
+
+ubuntu@ip-10-0-1-30:~/backup$ ls -R data/
+data/:
+dir1  dir2  dir3  file0
+
+data/dir1:
+file1
+
+data/dir2:
+file2
+
+data/dir3:
+ubuntu@ip-10-0-1-30:~/backup$ rm -r data/dir1
+ubuntu@ip-10-0-1-30:~/backup$ ls -R data/
+data/:
+dir2  dir3  file0
+
+data/dir2:
+file2
+
+data/dir3:
+
+ubuntu@ip-10-0-1-30:~/backup$ cat backup.log
+2021/12/29 19:49:01 [10239] building file list
+2021/12/29 19:49:01 [10239] *deleting   data/dir1/file1
+2021/12/29 19:49:01 [10239] *deleting   data/dir1/
+2021/12/29 19:49:01 [10239] .d..t...... data/
+2021/12/29 19:49:01 [10239] sent 321 bytes  received 55 bytes  752.00 bytes/sec
+2021/12/29 19:49:01 [10239] total size is 0  speedup is 0.00
+
+```
 
 
 
