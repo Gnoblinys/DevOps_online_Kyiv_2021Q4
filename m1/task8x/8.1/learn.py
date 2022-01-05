@@ -1,17 +1,7 @@
-x=5
-print(x)
-x=x+x
-print(x)
+stud=[('ivan',181)]
+stud.append(('petya',573))
+stud.append(('Vasia',598))
 
-i = type(x)
-print(i)
+print(all(rating > 1700 for _, rating in stud))
 
-x=3.14
-i=type(x)
-print(i)
-
-z='abc'
-print(z)
-
-i=x+z
-print(i)
+00:21:17
