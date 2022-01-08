@@ -14,14 +14,6 @@ def validate_param():
             return a, b, c
 
 
-def main():
-    valid_param = validate_param()
-    a = valid_param[0]
-    b = valid_param[1]
-    c = valid_param[2]
-    print((a), (b), (c))
+validate_param()
 
-
-
-
-main()
+print(a + b + c)
