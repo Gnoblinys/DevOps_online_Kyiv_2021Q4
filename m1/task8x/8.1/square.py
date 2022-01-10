@@ -4,11 +4,11 @@ def validate_param():
     count = 0
     while count <= 2:
         try:
-            a = int(input("Enter a:"))
-            b = int(input("Enter b:"))
-            c = int(input("Enter c:"))
+            a = float(input("Enter a:"))
+            b = float(input("Enter b:"))
+            c = float(input("Enter c:"))
         except ValueError:
-            print("Enter only numbers!")
+            print("Enter only numbers with \".\" ")
             count += 1
             continue
         else:
@@ -24,28 +24,42 @@ def roots(discr, a, b, c):
     if discr > 0:
         x1 = (-b + math.sqrt(discr)) / (2 * a)
         x2 = (-b - math.sqrt(discr)) / (2 * a)
-        print("x1 = %.2f \nx2 = %.2f" % (x1, x2))
         return discr, x1, x2
     elif discr == 0:
         x = -b / (2 * a)
-        print("x = %.2f" % x)
         return discr, x
-    else:
-        print("Without decision")
 
 def square_print(a, b, c, root):
-    print("================\nPrint results:\nEntered parameters:")
+    print("================\nEntered parameters:")
     print("a:", str(a), "\nb:", str(b), "\nc:", str(c))
-    x = root[0]
-    x1 = root[1]
-    x2 = root[2]
-    print(root)
-    print(x, x1, x2)
+    print("================\nResults:")
+    count = 1
+    while count == 1:
+        try:
+            Discriminant = root[0]
+            x1 = root[1]
+            x2 = root[2]
+            print("Discriminant = %.2f" % Discriminant)
+            print("x1 = %.2f \nx2 = %.2f" % (x1, x2))
+            count = 0
+        except IndexError:
+            Discriminant = root[0]
+            x = root[1]
+            print("Discriminant =", str(Discriminant))
+            print("x = %.2f" % x)
+            count = 0
+
+
 
 
 def solv_square(a, b, c):
     discr = discriminant(a, b, c)
     root = roots (discr, a, b, c)
+    try:
+        i = root[0]
+    except TypeError:
+        print("Without solution\nProgramm is stoped")
+        exit()
     square_print(a, b, c, root)
 
 
