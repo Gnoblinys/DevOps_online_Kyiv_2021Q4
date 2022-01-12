@@ -13,4 +13,5 @@
 |6.1|https://github.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/tree/master/m1/task6x/6.1|
 |6.2|https://github.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/tree/master/m1/task6x/6.2|
 |7.1|https://github.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/tree/master/m1/task7x/7.1|
+|8.1|https://github.com/Gnoblinys/DevOps_online_Kyiv_2021Q4/tree/master/m1/task8x/8.1|
 |||
