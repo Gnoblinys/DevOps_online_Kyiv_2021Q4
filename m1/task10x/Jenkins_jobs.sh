@@ -1,5 +1,10 @@
 Before scp
 
+SSH Agent
+Setup trought - Manage Credentials
+
+OR!
+
 1) We have to use -o StrictHostKeyChecking=no:
 scp -v -o StrictHostKeyChecking=no index.html student@192.168.88.211:/var/www/html
 instead of:
@@ -9,6 +14,8 @@ scp -v index.html student@192.168.88.211:/var/www/html
 
 chown jenkins:jenkins id_rsa
 chmod 600 id_rsa
+
+
 
 
 echo "======Build Started======"
@@ -24,3 +31,4 @@ cat <<EOF > index.html
 EOF
 scp -i /var/lib/jenkins/.ssh/EC2.pem -o StrictHostKeyChecking=no index.html ubuntu@172.31.31.63:/var/www/html                    
 echo "======Build Finished====="
+
