@@ -18,6 +18,19 @@ chmod 600 id_rsa
 
 
 
+
+echo "======Build Started======"
+pwd
+scp -i /home/ubuntu/jenkins/EC2.pem -o StrictHostKeyChecking=no m1/html/index.html ubuntu@172.31.31.63:/var/www/html 
+
+ls -la
+cat m1/html/index.html
+
+echo "======Build Finished====="
+
+
+
+
 echo "======Build Started======"
 cat <<EOF > index.html
 <html>
