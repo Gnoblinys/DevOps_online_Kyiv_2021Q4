@@ -1,8 +1,19 @@
 
 body {
-    background-color: green;
+    background-color: rgba(0, 0, 0, 0.938);
 }
 
 h2 {
-    color: red;
+    color: rgb(255, 0, 0);
+}
+
+button {
+    background-color: rgb(255, 4, 4);
+    border-radius: 5px;
+    border-color: white;
+    font-size: x-large;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 0, 0)
+    
+    
 }
