@@ -21,7 +21,13 @@ chmod 600 id_rsa
 
 echo "======Build Started======"
 pwd
-scp -i /home/ubuntu/jenkins/EC2.pem -o StrictHostKeyChecking=no m1/html/index.html ubuntu@172.31.31.63:/var/www/html 
+
+DATETIME=$(date)
+sed "4a\<h2><font color=yellow>$DATETIME</font></h2>"  index.html
+print($DATETIME)
+
+scp  -o StrictHostKeyChecking=no m1/html/index.html ubuntu@172.31.31.63:/var/www/html/
+#scp -i /home/ubuntu/jenkins/EC2.pem -o StrictHostKeyChecking=no m1/html/index.html ubuntu@172.31.31.63:/var/www/html 
 
 ls -la
 cat m1/html/index.html
