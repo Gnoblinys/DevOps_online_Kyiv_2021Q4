@@ -1,6 +1,8 @@
 
 #!/bin/bash
 
+sudo timedatectl set-timezone Europe/Kiev
+
 sudo apt update
 sudo apt upgrade -y
 
