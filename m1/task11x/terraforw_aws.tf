@@ -53,6 +53,8 @@ sudo chmod 700 /home/web1/.ssh
 cat > upgrade.sh <<TXT
 sudo timedatectl set-timezone Europe/Kiev
 sudo apt upgrade -y
+rm upgrade.sh
+
 TXT
 
 chmod a+x upgrade.sh
