@@ -35,7 +35,7 @@ systemctl start jenkins
 systemctl status jenkins
 ```
 
-* Config file
+* Config file for change port
 
 ```
 nano /etc/default/jenkins
