@@ -89,6 +89,53 @@ list running containers
 Delete images and containers
 > docker system prune -a
 
+# Repo Docker Hub
+
+Create repo in https://hub.docker.com
+and than login in docker host
+> docker login
+
+Tags before push
+>docker login
+
+```
+docker images
+REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
+web_server1   0.1       935b7acc3816   4 hours ago   219MB
+
+```
+
+```
+docker tag <imageId or tag> <dockerhub id>/<imagename>:<tag>
+
+docker tag 935b7acc3816 itigors/dev_online:latest
+
+docker images
+REPOSITORY            TAG       IMAGE ID       CREATED       SIZE
+itigors/web_server1   latest    935b7acc3816   4 hours ago   219MB
+web_server1           0.1       935b7acc3816   4 hours ago   219MB
+
+
+docker push itigors/dev_online:latest
+
+The push refers to repository [docker.io/itigors/web_server1]
+510f54b3ad5a: Pushed
+75275c17185e: Pushed
+f19f853f4414: Pushed
+8626e373f842: Pushed
+0eba131dffd0: Pushed
+
+
+```
+
+
+
+
+the format used is this:
+>docker tag local-image:tagname new-repo:tagname
+
+
+
 
 
 
