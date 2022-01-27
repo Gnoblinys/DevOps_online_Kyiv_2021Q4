@@ -22,24 +22,37 @@ sudo sed '9a\JAVA_ARGS="-Djenkins.install.runSetupWizard=false"' /etc/default/je
 sudo mv temp.txt /etc/default/jenkins
 
 sudo mkdir /var/lib/jenkins/init.groovy.d
+
 sudo cat > /var/lib/jenkins/init.groovy.d/basic-security.groovy <<TXT
+
 #!groovy
 
 import jenkins.model.*
-import hudson.util.*;
-import jenkins.install.*;
+import hudson.security.*
 
 def instance = Jenkins.getInstance()
 
-instance.setInstallState(InstallState.INITIAL_SETUP_COMPLETED)
+def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+hudsonRealm.createAccount("admin","admin")
+instance.setSecurityRealm(hudsonRealm)
+
+
+def strategy = new hudson.security.FullControlOnceLoggedInAuthorizationStrategy()
+strategy.add(Jenkins.ADMINISTER, admin)
+strategy.setAllowAnonymousRead(false)
+instance.setAuthorizationStrategy(strategy)
+
+
+instance.save()
 
 TXT
 
-sudo service jenkins stop
+udo service jenkins stop
 sudo service jenkins start
 
-sudo rm /var/lib/jenkins/init.groovy.d/basic-security.groovy
+#sudo rm /var/lib/jenkins/init.groovy.d/basic-security.groovy
 
 sudo timedatectl set-timezone Europe/Kiev
-sudo apt upgrade -y
+#sudo apt upgrade -y
+
 
