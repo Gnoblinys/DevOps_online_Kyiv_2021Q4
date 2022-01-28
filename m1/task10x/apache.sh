@@ -27,7 +27,6 @@ sudo timedatectl set-timezone Europe/Kiev
 sudo apt upgrade -y
 
 
-
 #==============================================================
 
 
