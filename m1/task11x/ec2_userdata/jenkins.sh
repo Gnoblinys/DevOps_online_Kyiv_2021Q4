@@ -33,7 +33,7 @@ import hudson.security.*
 def instance = Jenkins.getInstance()
 
 def hudsonRealm = new HudsonPrivateSecurityRealm(false)
-hudsonRealm.createAccount("admin","admin")
+hudsonRealm.createAccount("admin","1111")
 instance.setSecurityRealm(hudsonRealm)
 
 
@@ -47,7 +47,7 @@ instance.save()
 
 TXT
 
-udo service jenkins stop
+sudo service jenkins stop
 sudo service jenkins start
 
 #sudo rm /var/lib/jenkins/init.groovy.d/basic-security.groovy
