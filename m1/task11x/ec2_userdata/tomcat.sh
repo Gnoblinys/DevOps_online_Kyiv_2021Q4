@@ -2,7 +2,7 @@
 # https://www.digitalocean.com/community/tutorials/install-tomcat-9-ubuntu-1804-ru
 
 sudo apt update
-sudo apt install default-jdk
+sudo apt install default-jdk -y
 
 # add user tomcat
 sudo groupadd tomcat
@@ -42,9 +42,9 @@ sudo systemctl enable tomcat
 sudo nano /opt/tomcat/conf/tomcat-users.xml
 
 
->> #you can use environment variable ???
+#you can use environment variable ???
 
-<user username="TOMCAT_USERS" password="TOMCAT_PASSWORD" roles="manager-gui,admin-gui"/>
+<user username="admin" password="admin" roles="manager-gui,admin-gui"/>
 
 
 # fore acces from anything ip 
@@ -55,4 +55,8 @@ sudo nano /opt/tomcat/conf/tomcat-users.xml
 sudo nano /opt/tomcat/webapps/manager/META-INF/context.xml
 sudo nano /opt/tomcat/webapps/host-manager/META-INF/context.xml
 sudo systemctl restart tomcat
+
+#install maven
+sudo apt install -y maven
+
 
