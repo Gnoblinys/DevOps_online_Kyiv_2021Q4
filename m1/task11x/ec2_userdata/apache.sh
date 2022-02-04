@@ -4,7 +4,7 @@ sudo apt update
 
 sudo apt install apache2 -y 
 sudo ufw allow in "Apache"
-sudo service httpd start
+sudo service apache2 start
 
 
 sudo useradd -m web1

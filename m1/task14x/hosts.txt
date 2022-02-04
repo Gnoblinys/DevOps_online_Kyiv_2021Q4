@@ -1,0 +1,16 @@
+
+[jankins_servers]
+Jenkins ansible_host=172.31.28.59
+Jenkins_node1 ansible_host=172.31.29.37
+
+[web_servers]
+WEB1 ansible_host=172.31.22.175
+WEB2 ansible_host=172.31.25.178
+
+[all_servers:children]
+jankins_servers
+web_servers
+
+[all_servers:vars]
+private_key_file = /home/ubuntu/.ssh/EC2.pem
+ansible_user = ubuntu
