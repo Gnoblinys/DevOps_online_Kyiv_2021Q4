@@ -6,7 +6,7 @@ Setup trought - Manage Credentials
 OR!
 
 1) We have to use -o StrictHostKeyChecking=no:
-scp -v -o StrictHostKeyChecking=no index.html student@192.168.88.211:/var/www/html
+scp -v -o StrictHostKeyChecking=no index.html student@192.168.88.211
 instead of:
 scp -v index.html student@192.168.88.211:/var/www/html
 2) We have to copy id_rsa to /var/lib/jenkins/.ssh
@@ -18,36 +18,37 @@ chmod 600 id_rsa
 
 
 
-
 echo "======Build Started======"
-pwd
-
-DATETIME=$(date)
-sed "4a\<h2><font color=yellow>$DATETIME</font></h2>"  index.html
-print($DATETIME)
-
-scp  -o StrictHostKeyChecking=no m1/html/index.html ubuntu@172.31.31.63:/var/www/html/
-#scp -i /home/ubuntu/jenkins/EC2.pem -o StrictHostKeyChecking=no m1/html/index.html ubuntu@172.31.31.63:/var/www/html 
-
-ls -la
-cat m1/html/index.html
-
-echo "======Build Finished====="
 
 
+cat > petclinic.sh <<EOF
+#!/bin/sh
+java -jar /home/ubuntu/*.jar
 
-
-echo "======Build Started======"
-cat <<EOF > index.html
-<html>
-<body bgcolor=black>
-<center>
-<h2><font color=yellow>Test Jankins Build</font></h2>
-<h2><font color=yellow>Changed 1</font></h2>
-</center>
-</body>
-</html>>
 EOF
-scp -i /var/lib/jenkins/.ssh/EC2.pem -o StrictHostKeyChecking=no index.html ubuntu@172.31.31.63:/var/www/html                    
-echo "======Build Finished====="
 
+chmod a+x petclinic.sh
+
+cat > petclinic.service <<EOF
+[Unit]
+Description=Run petclinick.sh
+[Service]
+ExecStart=/home/ubuntu/petclinic.sh
+[Install]
+WantedBy=multi-user.target
+
+EOF
+
+scp -o StrictHostKeyChecking=no petclinic.sh ubuntu@172.31.22.175:/home/ubuntu/
+scp -o StrictHostKeyChecking=no petclinic.service ubuntu@172.31.22.175:/home/ubuntu/
+
+
+ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo mv petclinic.service /etc/systemd/system/
+
+ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl daemon-reload
+ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl enable petclinic.service
+ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl start petclinic.service
+ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl status petclinic.service
+
+
+echo "======Build Finished====="
