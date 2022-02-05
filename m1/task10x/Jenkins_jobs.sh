@@ -16,7 +16,26 @@ chown jenkins:jenkins id_rsa
 chmod 600 id_rsa
 
 
+#=========================== Build=============
 
+echo "======Build Started======"
+
+cd m1/petclinic/
+chmod +x ./mvnw
+./mvnw package
+
+
+ls -la
+
+scp -o StrictHostKeyChecking=no target/*.jar ubuntu@172.31.22.175:/home/ubuntu/
+
+
+echo "======Build Finished====="
+
+#=======================================================
+
+
+#================ Run jar as service ===================
 
 echo "======Build Started======"
 
@@ -39,12 +58,18 @@ WantedBy=multi-user.target
 
 EOF
 
+# remove prev. service
+ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl stop petclinic.service
+ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl disable petclinic.service
+
+# copy new file to web server
 scp -o StrictHostKeyChecking=no petclinic.sh ubuntu@172.31.22.175:/home/ubuntu/
 scp -o StrictHostKeyChecking=no petclinic.service ubuntu@172.31.22.175:/home/ubuntu/
 
-
+# move service to dst dir
 ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo mv petclinic.service /etc/systemd/system/
 
+# start service
 ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl daemon-reload
 ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl enable petclinic.service
 ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl start petclinic.service
