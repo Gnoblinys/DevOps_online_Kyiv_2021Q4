@@ -50,7 +50,7 @@ chmod a+x petclinic.sh
 
 cat > petclinic.service <<EOF
 [Unit]
-Description=Run petclinick.sh
+Description=Run petclinic.sh
 [Service]
 ExecStart=/home/ubuntu/petclinic.sh
 [Install]
@@ -58,22 +58,27 @@ WantedBy=multi-user.target
 
 EOF
 
+cat > petclinicservice.sh <<EOF
 # remove prev. service
-ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl stop petclinic.service
-ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl disable petclinic.service
-
-# copy new file to web server
-scp -o StrictHostKeyChecking=no petclinic.sh ubuntu@172.31.22.175:/home/ubuntu/
-scp -o StrictHostKeyChecking=no petclinic.service ubuntu@172.31.22.175:/home/ubuntu/
+sudo systemctl stop petclinic.service
+sudo systemctl disable petclinic.service
 
 # move service to dst dir
-ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo mv petclinic.service /etc/systemd/system/
+sudo mv petclinic.service /etc/systemd/system/
 
 # start service
-ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl daemon-reload
-ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl enable petclinic.service
-ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl start petclinic.service
-ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 sudo systemctl status petclinic.service
+sudo systemctl daemon-reload
+sudo systemctl enable petclinic.service
+sudo systemctl start petclinic.service
+sudo systemctl status petclinic.service
 
+EOF
+
+chmod a+x petclinicservice.sh
+
+# copy new file to web server
+scp -o StrictHostKeyChecking=no ./petclinic.* ubuntu@172.31.22.175:/home/ubuntu/
+scp -o StrictHostKeyChecking=no petclinicservice.sh ubuntu@172.31.22.175:/home/ubuntu/
+ssh -o StrictHostKeyChecking=no ubuntu@172.31.22.175 ./petclinicservice.sh
 
 echo "======Build Finished====="
