@@ -1,0 +1,12 @@
+echo "======Build Started======"
+
+cd m1/petclinic/
+chmod +x ./mvnw
+./mvnw package
+
+
+
+scp -o StrictHostKeyChecking=no target/*.jar ubuntu@3.222.77.214:/home/ubuntu/
+
+
+echo "======Build Finished====="

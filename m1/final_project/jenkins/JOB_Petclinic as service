@@ -1,0 +1,45 @@
+echo "======Build Started======"
+
+
+cat > petclinic.sh <<EOF
+#!/bin/sh
+java -jar /home/ubuntu/*.jar
+
+EOF
+
+chmod a+x petclinic.sh
+
+cat > petclinic.service <<EOF
+[Unit]
+Description=Run petclinic.sh
+[Service]
+ExecStart=/home/ubuntu/petclinic.sh
+[Install]
+WantedBy=multi-user.target
+
+EOF
+
+cat > petclinicservice.sh <<EOF
+# remove prev. service
+sudo systemctl stop petclinic.service
+sudo systemctl disable petclinic.service
+
+# move service to dst dir
+sudo mv petclinic.service /etc/systemd/system/
+
+# start service
+sudo systemctl daemon-reload
+sudo systemctl enable petclinic.service
+sudo systemctl start petclinic.service
+sudo systemctl status petclinic.service
+
+EOF
+
+chmod a+x petclinicservice.sh
+
+# copy new file to web server
+scp -o StrictHostKeyChecking=no ./petclinic.* ubuntu@3.222.77.214:/home/ubuntu/
+scp -o StrictHostKeyChecking=no petclinicservice.sh ubuntu@3.222.77.214:/home/ubuntu/
+ssh -o StrictHostKeyChecking=no ubuntu@3.222.77.214 ./petclinicservice.sh
+
+echo "======Build Finished====="
