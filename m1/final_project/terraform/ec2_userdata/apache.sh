@@ -10,6 +10,7 @@ sudo apt install openjdk-11-jdk -y
 
 sudo timedatectl set-timezone Europe/Kiev
 
+
 # change index.html
 DATETIME=$(date)
 cat > temp.html <<TXT
