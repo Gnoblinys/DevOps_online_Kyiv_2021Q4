@@ -38,8 +38,8 @@ EOF
 chmod a+x petclinicservice.sh
 
 # copy new file to web server
-scp -o StrictHostKeyChecking=no ./petclinic.* ubuntu@3.222.77.214:/home/ubuntu/
-scp -o StrictHostKeyChecking=no petclinicservice.sh ubuntu@3.222.77.214:/home/ubuntu/
-ssh -o StrictHostKeyChecking=no ubuntu@3.222.77.214 ./petclinicservice.sh
+scp -o StrictHostKeyChecking=no ./petclinic.* ubuntu@54.166.171.10:/home/ubuntu/
+scp -o StrictHostKeyChecking=no petclinicservice.sh ubuntu@54.166.171.10:/home/ubuntu/
+ssh -o StrictHostKeyChecking=no ubuntu@54.166.171.10 ./petclinicservice.sh
 
 echo "======Build Finished====="
