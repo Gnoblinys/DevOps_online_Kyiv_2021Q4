@@ -1,12 +1,14 @@
-# Connect to AWS
-#Use next comand for add KEYs to system.
-#Linux
-#export AWS_ACCESS_KEY_ID=
-#export AWS_SECRET_ACCESS_KEY=
 
-#Windows
-#set AWS_ACCESS_KEY_ID=
-#set AWS_SECRET_ACCESS_KEY=
+
+
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0"
+    }
+  }
+}
 
 
 provider "aws" {
