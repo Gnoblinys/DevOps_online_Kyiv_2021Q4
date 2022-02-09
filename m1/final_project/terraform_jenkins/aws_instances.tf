@@ -37,7 +37,7 @@ resource "aws_instance" "WEB_2" {
     ami = "ami-04505e74c0741db8d"
     instance_type = "t2.micro"
     key_name = "EC2_us-east-1a"
-    user_data = file("ec2_userdata/apache.sh")
+    user_data = file("apache.sh")
     network_interface {
     network_interface_id = aws_network_interface.eth0.id
     device_index         = 0
