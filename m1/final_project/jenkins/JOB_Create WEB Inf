@@ -1,15 +1,22 @@
 echo "======Build Started======"
 
 pwd
+ 
+cd m1/final_project/terraform_jenkins/
 
 ls -l
-
-cd m1/final_project/terraform
-
+#!!!Before add variables KEY under jenkins user!!!
 terraform init
-terraform apply -auto-approve -lock=false
 
-terraform show | grep WEB_2_publick_ip > WEB_2_publick_ip.txt
+terraform apply -lock=false -auto-approve
+
+terraform show | grep WEB_2_publick_ip > temp
+
+grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' temp > WEB_2_publick_ip.txt
+export WEB2IP=$(cat WEB_2_publick_ip.txt)
+echo $WEB2IP
+
+git add 
 
 
 echo "======Build Finished====="
