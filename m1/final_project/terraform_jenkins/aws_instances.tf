@@ -25,6 +25,7 @@ resource "aws_eip" "elastick_ip_WEB_2" {
 }
 
 
+
 resource "aws_network_interface" "eth0" {
   subnet_id = aws_subnet.main.id
   private_ips     = ["10.0.1.50"]
