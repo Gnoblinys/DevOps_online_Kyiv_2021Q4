@@ -19,30 +19,22 @@ resource "aws_key_pair" "EC2_us-east-1a" {
 }
 
 #elastik ip
-resource "aws_eip" "elastick_ip_WEB_2" {
-  instance = aws_instance.WEB_2.id
+resource "aws_eip" "elastick_ip_WEB1" {
+  instance = aws_instance.WEB1.id
 }
 
 
-resource "aws_network_interface" "eth0" {
-  subnet_id = aws_subnet.main.id
-  private_ips     = ["10.0.1.50"]
-  security_groups = [aws_security_group.allow_ALL.id]
-}
-
-
-# Creating instanse
-resource "aws_instance" "WEB_2" {
+# Creating instanse 1
+resource "aws_instance" "WEB1" {
     ami = "ami-04505e74c0741db8d"
     instance_type = "t2.micro"
     key_name = "EC2_us-east-1a"
     user_data = file("ec2_userdata/apache.sh")
-    network_interface {
-    network_interface_id = aws_network_interface.eth0.id
-    device_index         = 0
-  }
+    subnet_id = aws_subnet.main.id
+    vpc_security_group_ids = [aws_security_group.allow_ALL.id]
+
     tags = {
-      Name = "WEB_2"
+      Name = "WEB1"
     }
     lifecycle {
       create_before_destroy = true
@@ -53,9 +45,9 @@ resource "aws_instance" "WEB_2" {
 
 # Output zone ====================================
 
-output "WEB_2_publick_ip" {
-  value = aws_eip.elastick_ip_WEB_2.public_ip
+output "WEB1_publick_ip" {
+  value = aws_eip.elastick_ip_WEB1.public_ip
 }
-output "WEB_2_private_ip" {
-  value = aws_instance.WEB_2.private_ip
+output "WEB1_private_ip" {
+  value = aws_instance.WEB1.private_ip
 }

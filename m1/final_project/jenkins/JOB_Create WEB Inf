@@ -1,0 +1,15 @@
+echo "======Build Started======"
+
+pwd
+
+ls -l
+
+cd m1/final_project/terraform
+
+terraform init
+terraform apply -auto-approve
+
+terraform show | grep WEB_2_publick_ip > WEB_2_publick_ip.txt
+
+
+echo "======Build Finished====="
