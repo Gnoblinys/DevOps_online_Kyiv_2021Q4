@@ -35,7 +35,7 @@ resource "aws_eip" "elastick_ip_WEB_2" {
 
 # Creating instanse
 resource "aws_instance" "WEB_2" {
-    ami = "ami-01f87c43e618bf8f0"
+    ami = "ami-04505e74c0741db8d"
     instance_type = "t2.micro"
     key_name = "EC2_us-east-1a"
     user_data = file("apache.sh")
