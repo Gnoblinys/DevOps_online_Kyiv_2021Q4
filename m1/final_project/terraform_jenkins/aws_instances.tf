@@ -55,7 +55,7 @@ resource "aws_instance" "WEB_2" {
 # Output zone ====================================
 
 output "WEB_2_publick_ip" {
-  value = aws_eip.elastick_ip_WEB_2
+  value = aws_eip.elastick_ip_WEB_2.public_ip
 }
 output "WEB_2_private_ip" {
   value = aws_instance.WEB_2.private_ip
