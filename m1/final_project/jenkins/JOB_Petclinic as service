@@ -1,5 +1,7 @@
 echo "======Build Started======"
 
+pwd
+
 
 cat > petclinic.sh <<EOF
 #!/bin/sh
@@ -37,9 +39,13 @@ EOF
 
 chmod a+x petclinicservice.sh
 
+
+export WEB2IP=$(cat ~/workspace/FromGit_EC2_PetClinic/m1/final_project/terraform_jenkins/WEB_2_publick_ip.txt)
+echo $WEB2IP
+
 # copy new file to web server
-scp -o StrictHostKeyChecking=no ./petclinic.* ubuntu@54.166.171.10:/home/ubuntu/
-scp -o StrictHostKeyChecking=no petclinicservice.sh ubuntu@54.166.171.10:/home/ubuntu/
-ssh -o StrictHostKeyChecking=no ubuntu@54.166.171.10 ./petclinicservice.sh
+scp -o StrictHostKeyChecking=no ./petclinic.* ubuntu@$WEB2IP:/home/ubuntu/
+scp -o StrictHostKeyChecking=no petclinicservice.sh ubuntu@$WEB2IP:/home/ubuntu/
+ssh -o StrictHostKeyChecking=no ubuntu@$WEB2IP ./petclinicservice.sh
 
 echo "======Build Finished====="
