@@ -7,15 +7,12 @@ chmod +x ./mvnw
 pwd
 ls -l
 
+scp -o StrictHostKeyChecking=no ubuntu@172.31.28.59:/var/lib/jenkins/workspace/Create_WEB_Inf/m1/final_project/terraform_jenkins/*.txt ~/workspace/FromGit_EC2_PetClinic/m1/final_project/terraform_jenkins/ 
+
+
 export WEB2IP=$(cat ~/workspace/FromGit_EC2_PetClinic/m1/final_project/terraform_jenkins/WEB_2_publick_ip.txt)
 echo $WEB2IP
 
-
-scp -o StrictHostKeyChecking=no target/*.jar ubuntu@$WEB2IP:/home/ubuntu/
-cp target/*.jar ~/workspace/FromGit_EC2_PetClinic/m1/final_project/artefact/
-
-git add ~/workspace/FromGit_EC2_PetClinic/m1/final_project/artefact/*.jar
-git commit -m "add artefact"
 
 
 echo "======Build Finished====="

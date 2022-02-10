@@ -30,7 +30,7 @@ resource "aws_eip" "elastick_ip_WEB_2" {
 
 resource "aws_network_interface" "eth0" {
   subnet_id = aws_subnet.main.id
-  private_ips     = ["10.0.1.50"]
+  private_ips     = ["10.0.1.100"]
   security_groups = [aws_security_group.allow_ALL.id]
 }
 
