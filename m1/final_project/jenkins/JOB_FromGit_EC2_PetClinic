@@ -1,12 +1,21 @@
 echo "======Build Started======"
 
-cd m1/petclinic/
+cd m1/final_project/petclinic/
 chmod +x ./mvnw
 ./mvnw package
 
+pwd
+ls -l
+
+export WEB2IP=$(cat ~/workspace/FromGit_EC2_PetClinic/m1/final_project/terraform_jenkins/WEB_2_publick_ip.txt)
+echo $WEB2IP
 
 
-scp -o StrictHostKeyChecking=no target/*.jar ubuntu@3.222.77.214:/home/ubuntu/
+scp -o StrictHostKeyChecking=no target/*.jar ubuntu@$WEB2IP:/home/ubuntu/
+cp target/*.jar ~/workspace/FromGit_EC2_PetClinic/m1/final_project/artefact/
+
+git add ~/workspace/FromGit_EC2_PetClinic/m1/final_project/artefact/*.jar
+git commit -m "add artefact"
 
 
 echo "======Build Finished====="

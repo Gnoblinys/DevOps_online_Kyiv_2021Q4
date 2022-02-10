@@ -12,11 +12,15 @@ terraform apply -lock=false -auto-approve
 
 terraform show | grep WEB_2_publick_ip > temp
 
+touch WEB_2_publick_ip.txt
 grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' temp > WEB_2_publick_ip.txt
 export WEB2IP=$(cat WEB_2_publick_ip.txt)
 echo $WEB2IP
 
-git add 
+pwd
+ls -la
 
+git add /var/lib/jenkins/workspace/Create_WEB_Inf/m1/final_project/terraform_jenkins/* :!/var/lib/jenkins/workspace/Create_WEB_Inf/m1/final_project/terraform_jenkins/.terraform/*
+git commit -m "WEB2IP"
 
 echo "======Build Finished====="
