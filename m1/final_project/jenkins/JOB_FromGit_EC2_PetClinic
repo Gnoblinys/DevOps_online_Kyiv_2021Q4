@@ -1,19 +1,26 @@
 echo "======Build Started======"
 
 cd m1/final_project/petclinic/
+
 chmod +x ./mvnw
 ./mvnw package
 
 pwd
 ls -l
 
+#copy variables from main Jenkins
 scp -o StrictHostKeyChecking=no ubuntu@172.31.28.59:/var/lib/jenkins/workspace/Create_WEB_Inf/m1/final_project/terraform_jenkins/*.txt ~/workspace/FromGit_EC2_PetClinic/m1/final_project/terraform_jenkins/ 
 
 
 export WEB2IP=$(cat ~/workspace/FromGit_EC2_PetClinic/m1/final_project/terraform_jenkins/WEB_2_publick_ip.txt)
 echo $WEB2IP
 
-scp -o StrictHostKeyChecking=no ./target/*.jar ubuntu@$WEB2IP:home/ubuntu/
+scp -o StrictHostKeyChecking=no ./target/*.jar ubuntu@$WEB2IP:/home/ubuntu/
+
+
+#cp ./target/*.jar ~/workspace/FromGit_EC2_PetClinic/m1/final_project/artefact/
+
+
 
 
 echo "======Build Finished====="

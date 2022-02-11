@@ -1,0 +1,14 @@
+echo "======Build Started======"
+
+pwd
+ 
+cd /var/lib/jenkins/workspace/Create_WEB_Inf/m1/final_project/terraform_jenkins/
+
+ls -l
+#!!!Before add variables KEY under jenkins user!!!
+terraform init
+
+terraform destroy -auto-approve
+
+
+echo "======Build Finished====="
