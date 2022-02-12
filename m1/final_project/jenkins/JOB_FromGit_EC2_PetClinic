@@ -18,7 +18,7 @@ echo $WEB2IP
 scp -o StrictHostKeyChecking=no ./target/*.jar ubuntu@$WEB2IP:/home/ubuntu/
 
 
-#cp ./target/*.jar ~/workspace/FromGit_EC2_PetClinic/m1/final_project/artefact/
+
 
 
 
