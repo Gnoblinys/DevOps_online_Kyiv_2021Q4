@@ -28,6 +28,7 @@ resource "aws_key_pair" "EC2_us-east-1a" {
 
 
 
+
 #elastik ip
 resource "aws_eip" "elastick_ip_WEB_2" {
   instance = aws_instance.WEB_2.id
